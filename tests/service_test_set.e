@@ -200,6 +200,53 @@ feature -- Test: WebSocket
 			check message_created: msg /= Void end
 		end
 
+feature -- Test: Cache
+
+	test_new_cache
+			-- Test creating cache.
+		local
+			api: SERVICE_API
+			cache: SIMPLE_CACHE [ANY]
+		do
+			create api.make
+			cache := api.new_cache (100)
+			check cache_created: cache /= Void end
+			check cache_empty: cache.is_empty end
+		end
+
+	test_new_cache_with_ttl
+			-- Test creating cache with TTL.
+		local
+			api: SERVICE_API
+			cache: SIMPLE_CACHE [ANY]
+		do
+			create api.make
+			cache := api.new_cache_with_ttl (50, 3600)
+			check cache_created: cache /= Void end
+		end
+
+	test_new_string_cache
+			-- Test creating typed string cache.
+		local
+			api: SERVICE_API
+			cache: SIMPLE_CACHE [STRING]
+		do
+			create api.make
+			cache := api.new_string_cache (100)
+			cache.put ("key1", "value1")
+			check value_stored: attached cache.get ("key1") as v and then v.is_equal ("value1") end
+		end
+
+	test_cache_singleton
+			-- Test cache singleton access.
+		local
+			api: SERVICE_API
+		do
+			create api.make
+			api.cache.put ("test_key", "test_value")
+			check cache_has_key: api.cache.has ("test_key") end
+		end
+
 feature -- Test: Foundation Composition
 
 	test_foundation_features_available

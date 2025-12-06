@@ -27,6 +27,7 @@
 		<library name="simple_cors" location="$SIMPLE_CORS\simple_cors.ecf"/>
 		<library name="simple_rate_limiter" location="$SIMPLE_RATE_LIMITER\simple_rate_limiter.ecf"/>
 		<library name="simple_template" location="$SIMPLE_TEMPLATE\simple_template.ecf"/>
+		<library name="simple_cache" location="$SIMPLE_CACHE\simple_cache.ecf"/>
 		<library name="simple_websocket" location="$SIMPLE_WEBSOCKET\simple_websocket.ecf"/>
 		<cluster name="src" location=".\src\" recursive="true"/>
 	</target>

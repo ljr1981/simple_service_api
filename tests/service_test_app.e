@@ -65,6 +65,14 @@ feature {NONE} -- Initialization
 			run_test (agent tests.test_new_ws_ping_pong, "test_new_ws_ping_pong")
 			run_test (agent tests.test_new_ws_message, "test_new_ws_message")
 
+			-- Cache Tests
+			io.put_string ("%NCache Tests%N")
+			io.put_string ("-----------%N")
+			run_test (agent tests.test_new_cache, "test_new_cache")
+			run_test (agent tests.test_new_cache_with_ttl, "test_new_cache_with_ttl")
+			run_test (agent tests.test_new_string_cache, "test_new_string_cache")
+			run_test (agent tests.test_cache_singleton, "test_cache_singleton")
+
 			-- Foundation Inheritance Tests
 			io.put_string ("%NFoundation Inheritance Tests%N")
 			io.put_string ("----------------------------%N")
