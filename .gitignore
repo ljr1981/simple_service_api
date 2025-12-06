@@ -1,0 +1,9 @@
+# EiffelStudio generated files
+EIFGENs/
+
+# Windows resource files
+*.rc
+
+# Backup files
+*~
+*.bak

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-23-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-23-0 http://www.eiffel.com/developers/xml/configuration-1-23-0.xsd" name="simple_service_api" uuid="C3D4E5F6-A7B8-4C9D-0E1F-2A3B4C5D6E7F" library_target="simple_service_api">
+	<description>Simple Service API - Unified facade for web application services</description>
+	<target name="simple_service_api">
+		<root all_classes="true"/>
+		<file_rule>
+			<exclude>/EIFGENs$</exclude>
+			<exclude>/\..*$</exclude>
+		</file_rule>
+		<option warning="warning">
+			<assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true" supplier_precondition="true"/>
+		</option>
+		<setting name="console_application" value="true"/>
+		<setting name="dead_code_removal" value="feature"/>
+		<capability>
+			<concurrency support="thread"/>
+		</capability>
+		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
+		<library name="time" location="$ISE_LIBRARY\library\time\time.ecf"/>
+		<library name="net" location="$ISE_LIBRARY\library\net\net.ecf"/>
+		<!-- Foundation API (brings all core utilities) -->
+		<library name="simple_foundation_api" location="$SIMPLE_FOUNDATION_API\simple_foundation_api.ecf"/>
+		<!-- Service Libraries -->
+		<library name="simple_jwt" location="$SIMPLE_JWT\simple_jwt.ecf"/>
+		<library name="simple_smtp" location="$SIMPLE_SMTP\simple_smtp.ecf"/>
+		<library name="simple_sql" location="$SIMPLE_SQL\simple_sql.ecf"/>
+		<library name="simple_cors" location="$SIMPLE_CORS\simple_cors.ecf"/>
+		<library name="simple_rate_limiter" location="$SIMPLE_RATE_LIMITER\simple_rate_limiter.ecf"/>
+		<library name="simple_template" location="$SIMPLE_TEMPLATE\simple_template.ecf"/>
+		<library name="simple_websocket" location="$SIMPLE_WEBSOCKET\simple_websocket.ecf"/>
+		<cluster name="src" location=".\src\" recursive="true"/>
+	</target>
+	<target name="simple_service_api_tests" extends="simple_service_api">
+		<root class="SERVICE_TEST_APP" feature="make"/>
+		<option warning="warning">
+			<assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true" supplier_precondition="true"/>
+		</option>
+		<setting name="console_application" value="true"/>
+		<library name="testing" location="$ISE_LIBRARY\library\testing\testing.ecf"/>
+		<library name="testing_ext" location="$TESTING_EXT\testing_ext.ecf"/>
+		<cluster name="tests" location=".\tests\" recursive="true"/>
+	</target>
+</system>
