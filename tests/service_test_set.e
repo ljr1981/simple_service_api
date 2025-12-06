@@ -10,25 +10,25 @@ feature -- Test: JWT
 	test_new_jwt
 			-- Test creating JWT handler.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			jwt: SIMPLE_JWT
 		do
-			create service.make
-			jwt := service.new_jwt ("test-secret")
+			create api.make
+			jwt := api.new_jwt ("test-secret")
 			check jwt_created: jwt /= Void end
 		end
 
 	test_create_and_verify_token
 			-- Test creating and verifying a token.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			token: STRING
 		do
-			create service.make
-			token := service.create_token ("my-secret", "user@test.com", "test-app", 3600)
+			create api.make
+			token := api.create_token ("my-secret", "user@test.com", "test-app", 3600)
 			check token_created: not token.is_empty end
-			check token_valid: service.verify_token ("my-secret", token) end
-			check token_invalid_with_wrong_secret: not service.verify_token ("wrong-secret", token) end
+			check token_valid: api.verify_token ("my-secret", token) end
+			check token_invalid_with_wrong_secret: not api.verify_token ("wrong-secret", token) end
 		end
 
 feature -- Test: SMTP
@@ -36,11 +36,11 @@ feature -- Test: SMTP
 	test_new_smtp
 			-- Test creating SMTP client.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			smtp: SIMPLE_SMTP
 		do
-			create service.make
-			smtp := service.new_smtp ("smtp.example.com", 587)
+			create api.make
+			smtp := api.new_smtp ("smtp.example.com", 587)
 			check smtp_created: smtp /= Void end
 		end
 
@@ -49,11 +49,11 @@ feature -- Test: SQL
 	test_new_memory_database
 			-- Test creating in-memory database.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			db: SIMPLE_SQL_DATABASE
 		do
-			create service.make
-			db := service.new_memory_database
+			create api.make
+			db := api.new_memory_database
 			check database_created: db /= Void end
 			check database_is_open: db.is_open end
 			db.close
@@ -62,11 +62,11 @@ feature -- Test: SQL
 	test_database_execute
 			-- Test executing SQL.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			db: SIMPLE_SQL_DATABASE
 		do
-			create service.make
-			db := service.new_memory_database
+			create api.make
+			db := api.new_memory_database
 			db.execute ("CREATE TABLE test (id INTEGER PRIMARY KEY, name TEXT)")
 			check no_error_create: not db.has_error end
 			db.execute ("INSERT INTO test (name) VALUES ('hello')")
@@ -79,22 +79,22 @@ feature -- Test: CORS
 	test_new_cors
 			-- Test creating CORS handler.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			cors: SIMPLE_CORS
 		do
-			create service.make
-			cors := service.new_cors
+			create api.make
+			cors := api.new_cors
 			check cors_created: cors /= Void end
 		end
 
 	test_new_cors_permissive
 			-- Test creating permissive CORS handler.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			cors: SIMPLE_CORS
 		do
-			create service.make
-			cors := service.new_cors_permissive
+			create api.make
+			cors := api.new_cors_permissive
 			check cors_created: cors /= Void end
 		end
 
@@ -103,11 +103,11 @@ feature -- Test: Rate Limiter
 	test_new_rate_limiter
 			-- Test creating rate limiter.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			limiter: SIMPLE_RATE_LIMITER
 		do
-			create service.make
-			limiter := service.new_rate_limiter (100, 60)
+			create api.make
+			limiter := api.new_rate_limiter (100, 60)
 			check limiter_created: limiter /= Void end
 		end
 
@@ -116,25 +116,25 @@ feature -- Test: Template
 	test_new_template
 			-- Test creating template engine.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			tpl: SIMPLE_TEMPLATE
 		do
-			create service.make
-			tpl := service.new_template
+			create api.make
+			tpl := api.new_template
 			check template_created: tpl /= Void end
 		end
 
 	test_render_template
 			-- Test rendering a template.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			data: HASH_TABLE [STRING, STRING]
 			l_result: STRING
 		do
-			create service.make
+			create api.make
 			create data.make (2)
 			data.put ("World", "name")
-			l_result := service.render_template ("Hello, {{name}}!", data)
+			l_result := api.render_template ("Hello, {{name}}!", data)
 			check template_rendered: l_result.has_substring ("World") end
 		end
 
@@ -143,33 +143,33 @@ feature -- Test: WebSocket
 	test_new_ws_handshake
 			-- Test creating WebSocket handshake handler.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			hs: WS_HANDSHAKE
 		do
-			create service.make
-			hs := service.new_ws_handshake
+			create api.make
+			hs := api.new_ws_handshake
 			check handshake_created: hs /= Void end
 		end
 
 	test_new_ws_frame_parser
 			-- Test creating WebSocket frame parser.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			parser: WS_FRAME_PARSER
 		do
-			create service.make
-			parser := service.new_ws_frame_parser
+			create api.make
+			parser := api.new_ws_frame_parser
 			check parser_created: parser /= Void end
 		end
 
 	test_new_ws_text_frame
 			-- Test creating text frame.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			frame: WS_FRAME
 		do
-			create service.make
-			frame := service.new_ws_text_frame ("Hello", True)
+			create api.make
+			frame := api.new_ws_text_frame ("Hello", True)
 			check frame_created: frame /= Void end
 			check is_text: frame.is_text end
 		end
@@ -177,12 +177,12 @@ feature -- Test: WebSocket
 	test_new_ws_ping_pong
 			-- Test creating ping and pong frames.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			ping, pong: WS_FRAME
 		do
-			create service.make
-			ping := service.new_ws_ping_frame
-			pong := service.new_ws_pong_frame
+			create api.make
+			ping := api.new_ws_ping_frame
+			pong := api.new_ws_pong_frame
 			check ping_created: ping /= Void end
 			check pong_created: pong /= Void end
 			check ping_is_ping: ping.is_ping end
@@ -192,26 +192,26 @@ feature -- Test: WebSocket
 	test_new_ws_message
 			-- Test creating WebSocket message.
 		local
-			service: SERVICE
+			api: SERVICE_API
 			msg: WS_MESSAGE
 		do
-			create service.make
-			msg := service.new_ws_text_message ("Test message")
+			create api.make
+			msg := api.new_ws_text_message ("Test message")
 			check message_created: msg /= Void end
 		end
 
-feature -- Test: Foundation Inheritance
+feature -- Test: Foundation Composition
 
 	test_foundation_features_available
-			-- Test that FOUNDATION features are inherited.
+			-- Test that FOUNDATION features are accessible via composition.
 		local
-			service: SERVICE
+			api: SERVICE_API
 		do
-			create service.make
-			-- Test some foundation features
-			check base64_works: service.base64_encode ("test").is_equal ("dGVzdA==") end
-			check uuid_works: not service.new_uuid.is_empty end
-			check sha256_works: not service.sha256 ("test").is_empty end
+			create api.make
+			-- Test foundation features via composition
+			check base64_works: api.foundation.base64_encode ("test").is_equal ("dGVzdA==") end
+			check uuid_works: not api.foundation.new_uuid.is_empty end
+			check sha256_works: not api.foundation.sha256 ("test").is_empty end
 		end
 
 end
