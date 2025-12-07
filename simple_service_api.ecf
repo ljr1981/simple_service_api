@@ -29,6 +29,7 @@
 		<library name="simple_template" location="$SIMPLE_TEMPLATE\simple_template.ecf"/>
 		<library name="simple_cache" location="$SIMPLE_CACHE\simple_cache.ecf"/>
 		<library name="simple_websocket" location="$SIMPLE_WEBSOCKET\simple_websocket.ecf"/>
+		<library name="simple_pdf" location="$SIMPLE_PDF\simple_pdf.ecf"/>
 		<cluster name="src" location=".\src\" recursive="true"/>
 	</target>
 	<target name="simple_service_api_tests" extends="simple_service_api">
