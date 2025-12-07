@@ -195,6 +195,42 @@ feature -- WebSocket
 			is_binary: Result.is_binary
 		end
 
+feature -- PDF Generation
+
+	new_pdf: SIMPLE_PDF
+			-- Create new PDF generator with default wkhtmltopdf engine.
+		do
+			create Result.make
+		end
+
+	new_pdf_with_chrome: SIMPLE_PDF
+			-- Create new PDF generator using Chrome engine.
+		do
+			create Result.make_with_engine (create {SIMPLE_PDF_CHROME}.make)
+		end
+
+	html_to_pdf (a_html: STRING): SIMPLE_PDF_DOCUMENT
+			-- Convert HTML string to PDF using default settings.
+		require
+			html_not_empty: not a_html.is_empty
+		do
+			Result := pdf.from_html (a_html)
+		end
+
+	url_to_pdf (a_url: STRING): SIMPLE_PDF_DOCUMENT
+			-- Convert URL to PDF using default settings.
+		require
+			url_not_empty: not a_url.is_empty
+		do
+			Result := pdf.from_url (a_url)
+		end
+
+	new_pdf_reader: SIMPLE_PDF_READER
+			-- Create new PDF text extractor.
+		do
+			create Result.make
+		end
+
 feature -- Caching
 
 	new_cache (a_max_size: INTEGER): SIMPLE_CACHE [ANY]
@@ -293,6 +329,19 @@ feature -- Direct Access (Singleton Instances)
 			-- Use `new_cache' for custom configuration.
 		once
 			create Result.make (1000)
+		end
+
+	pdf: SIMPLE_PDF
+			-- Direct access to PDF generator with default engine.
+			-- Use `new_pdf' or `new_pdf_with_chrome' for specific engines.
+		once
+			create Result.make
+		end
+
+	pdf_reader: SIMPLE_PDF_READER
+			-- Direct access to PDF text extractor.
+		once
+			create Result.make
 		end
 
 end
