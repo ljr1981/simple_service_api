@@ -4,7 +4,7 @@
 
 # simple_service_api
 
-**[Documentation](https://ljr1981.github.io/simple_service_api/)** | **[GitHub](https://github.com/ljr1981/simple_service_api)**
+**[Documentation](https://simple-eiffel.github.io/simple_service_api/)** | **[GitHub](https://github.com/simple-eiffel/simple_service_api)**
 
 Unified service layer facade for Eiffel web applications. Bundles authentication, email, database, CORS, rate limiting, templates, and WebSocket services.
 
@@ -29,14 +29,14 @@ This library bundles the following service libraries:
 
 | Library | Purpose | Environment Variable |
 |---------|---------|---------------------|
-| [simple_jwt](https://github.com/ljr1981/simple_jwt) | JWT authentication | `$SIMPLE_JWT` |
-| [simple_smtp](https://github.com/ljr1981/simple_smtp) | Email sending | `$SIMPLE_SMTP` |
-| [simple_sql](https://github.com/ljr1981/simple_sql) | SQLite database | `$SIMPLE_SQL` |
-| [simple_cors](https://github.com/ljr1981/simple_cors) | CORS handling | `$SIMPLE_CORS` |
-| [simple_rate_limiter](https://github.com/ljr1981/simple_rate_limiter) | Rate limiting | `$SIMPLE_RATE_LIMITER` |
-| [simple_template](https://github.com/ljr1981/simple_template) | Template rendering | `$SIMPLE_TEMPLATE` |
-| [simple_websocket](https://github.com/ljr1981/simple_websocket) | WebSocket protocol | `$SIMPLE_WEBSOCKET` |
-| [simple_foundation_api](https://github.com/ljr1981/simple_foundation_api) | Core utilities (composed) | `$SIMPLE_FOUNDATION_API` |
+| [simple_jwt](https://github.com/simple-eiffel/simple_jwt) | JWT authentication | `$SIMPLE_JWT` |
+| [simple_smtp](https://github.com/simple-eiffel/simple_smtp) | Email sending | `$SIMPLE_SMTP` |
+| [simple_sql](https://github.com/simple-eiffel/simple_sql) | SQLite database | `$SIMPLE_SQL` |
+| [simple_cors](https://github.com/simple-eiffel/simple_cors) | CORS handling | `$SIMPLE_CORS` |
+| [simple_rate_limiter](https://github.com/simple-eiffel/simple_rate_limiter) | Rate limiting | `$SIMPLE_RATE_LIMITER` |
+| [simple_template](https://github.com/simple-eiffel/simple_template) | Template rendering | `$SIMPLE_TEMPLATE` |
+| [simple_websocket](https://github.com/simple-eiffel/simple_websocket) | WebSocket protocol | `$SIMPLE_WEBSOCKET` |
+| [simple_foundation_api](https://github.com/simple-eiffel/simple_foundation_api) | Core utilities (composed) | `$SIMPLE_FOUNDATION_API` |
 
 ## Installation
 
