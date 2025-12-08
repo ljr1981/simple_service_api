@@ -3,182 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simple_service_api - Documentation</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.6;
-            color: #333;
-        }
-        .logo { text-align: center; margin-bottom: 2rem; }
-        .logo img { max-width: 400px; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 0.5rem; }
-        h2 { color: #34495e; margin-top: 2rem; }
-        code { background: #f4f4f4; padding: 0.2rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
-        pre { background: #f4f4f4; padding: 1rem; border-radius: 5px; overflow-x: auto; }
-        pre code { background: none; padding: 0; }
-        table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
-        th, td { border: 1px solid #ddd; padding: 0.75rem; text-align: left; }
-        th { background: #f4f4f4; }
-        a { color: #3498db; }
-        .badge { display: inline-block; padding: 0.25rem 0.5rem; background: #27ae60; color: white; border-radius: 3px; font-size: 0.8em; }
-    </style>
+    <title>simple_service_api - Unified Service Layer for Eiffel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
 </head>
 <body>
-    <div class="logo">
-        <img src="images/logo.png" alt="simple_ library logo">
-    </div>
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="simple_* logo" class="logo">
+        </div>
+        <h1>simple_service_api</h1>
+        <p class="tagline">Unified Service Layer for Eiffel Web Applications</p>
+        <div class="badges">
+            <span class="badge badge-rfc">Service Layer</span>
+            <span class="badge badge-version">v1.0.0</span>
+            <span class="badge badge-license">MIT</span>
+        </div>
+    </header>
 
-    <h1>simple_service_api</h1>
-    <p><span class="badge">Service Layer</span></p>
-    <p>Unified service layer facade for Eiffel web applications. Bundles authentication, email, database, CORS, rate limiting, templates, and WebSocket services.</p>
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#usage">Usage</a></li>
+            <li><a href="#api">API Reference</a></li>
+            <li><a href="https://github.com/simple-eiffel/simple_service_api">GitHub</a></li>
+        </ul>
+    </nav>
 
-    <h2>Overview</h2>
-    <p>The <code>SERVICE</code> class provides a single entry point to all web application services. It inherits from <code>FOUNDATION</code>, so you also get all core utilities (Base64, hashing, JSON, etc.).</p>
+    <main>
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>
+                <strong>simple_service_api</strong> is a unified service layer facade that bundles all
+                web application services for Eiffel. Instead of managing multiple library dependencies,
+                use a single SERVICE class that provides access to:
+            </p>
+            <ul>
+                <li>JWT authentication (token creation and verification)</li>
+                <li>SMTP email sending</li>
+                <li>SQLite database operations</li>
+                <li>CORS handling for web APIs</li>
+                <li>Rate limiting for API protection</li>
+                <li>Template rendering with variable substitution</li>
+                <li>WebSocket protocol support</li>
+            </ul>
+            <p>Inherits from <strong>simple_foundation_api</strong>, so you also get Base64, hashing, JSON, UUID, and more.</p>
+        </section>
 
-    <h2>Bundled Libraries</h2>
-    <table>
-        <tr><th>Library</th><th>Purpose</th></tr>
-        <tr><td><a href="https://simple-eiffel.github.io/simple_jwt/">simple_jwt</a></td><td>JWT authentication</td></tr>
-        <tr><td><a href="https://simple-eiffel.github.io/simple_smtp/">simple_smtp</a></td><td>Email sending</td></tr>
-        <tr><td><a href="https://simple-eiffel.github.io/simple_sql/">simple_sql</a></td><td>SQLite database</td></tr>
-        <tr><td><a href="https://simple-eiffel.github.io/simple_cors/">simple_cors</a></td><td>CORS handling</td></tr>
-        <tr><td><a href="https://simple-eiffel.github.io/simple_rate_limiter/">simple_rate_limiter</a></td><td>Rate limiting</td></tr>
-        <tr><td><a href="https://simple-eiffel.github.io/simple_template/">simple_template</a></td><td>Template rendering</td></tr>
-        <tr><td><a href="https://simple-eiffel.github.io/simple_websocket/">simple_websocket</a></td><td>WebSocket protocol</td></tr>
-        <tr><td><a href="https://simple-eiffel.github.io/simple_foundation_api/">simple_foundation_api</a></td><td>Core utilities (inherited)</td></tr>
-    </table>
+        <section id="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>JWT Auth</h4>
+                    <p>Create and verify JSON Web Tokens for authentication</p>
+                </div>
+                <div class="feature-card">
+                    <h4>SMTP Email</h4>
+                    <p>Send emails via SMTP with TLS support</p>
+                </div>
+                <div class="feature-card">
+                    <h4>SQL Database</h4>
+                    <p>SQLite database with file or in-memory storage</p>
+                </div>
+                <div class="feature-card">
+                    <h4>CORS</h4>
+                    <p>Cross-Origin Resource Sharing for web APIs</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Rate Limiting</h4>
+                    <p>Protect APIs with configurable rate limits</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Templates</h4>
+                    <p>Render templates with {{variable}} substitution</p>
+                </div>
+                <div class="feature-card">
+                    <h4>WebSocket</h4>
+                    <p>WebSocket handshake, frames, and protocol support</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Foundation</h4>
+                    <p>Inherits Base64, hashing, JSON, UUID, validation</p>
+                </div>
+            </div>
+        </section>
 
-    <h2>Installation</h2>
-    <pre><code>&lt;library name="simple_service_api"
+        <section id="installation">
+            <h2>Installation</h2>
+            <p>Add simple_service_api to your ECF configuration file:</p>
+            <pre><code>&lt;library name="simple_service_api"
         location="$SIMPLE_SERVICE_API\simple_service_api.ecf"/&gt;</code></pre>
+        </section>
 
-    <h2>Quick Start</h2>
-    <pre><code>local
-    service: SERVICE
-do
-    create service.make
+        <section id="usage">
+            <h2>Quick Start</h2>
+            <div class="quick-start">
+                <pre><code><span class="keyword">local</span>
+    service: <span class="type">SERVICE</span>
+<span class="keyword">do</span>
+    <span class="keyword">create</span> service.<span class="feature">make</span>
 
-    -- JWT Authentication
-    token := service.create_token ("secret", "user@example.com", "my-app", 3600)
-    if service.verify_token ("secret", token) then
-        print ("Token valid!%N")
-    end
+    <span class="comment">-- JWT Authentication</span>
+    token := service.<span class="feature">create_token</span> (<span class="string">"secret"</span>, <span class="string">"user@example.com"</span>, <span class="string">"my-app"</span>, 3600)
+    <span class="keyword">if</span> service.<span class="feature">verify_token</span> (<span class="string">"secret"</span>, token) <span class="keyword">then</span>
+        <span class="keyword">print</span> (<span class="string">"Token valid!%N"</span>)
+    <span class="keyword">end</span>
 
-    -- Email
-    smtp := service.new_smtp ("smtp.example.com", 587)
+    <span class="comment">-- Database</span>
+    db := service.<span class="feature">new_memory_database</span>
+    db.<span class="feature">execute</span> (<span class="string">"CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)"</span>)
 
-    -- Database
-    db := service.new_memory_database
-    db.execute ("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)")
+    <span class="comment">-- Rate Limiting</span>
+    limiter := service.<span class="feature">new_rate_limiter</span> (100, 60)  <span class="comment">-- 100 requests per 60 seconds</span>
 
-    -- CORS
-    cors := service.new_cors
+    <span class="comment">-- Templates</span>
+    result := service.<span class="feature">render_template</span> (<span class="string">"Hello, {{name}}!"</span>, data)
 
-    -- Rate Limiting
-    limiter := service.new_rate_limiter (100, 60)
+    <span class="comment">-- Foundation utilities (inherited)</span>
+    encoded := service.<span class="feature">base64_encode</span> (<span class="string">"data"</span>)
+    hash := service.<span class="feature">sha256</span> (<span class="string">"password"</span>)
+<span class="keyword">end</span></code></pre>
+            </div>
+        </section>
 
-    -- Templates
-    result := service.render_template ("Hello, {{name}}!", data)
+        <section id="api">
+            <h2>API Reference</h2>
 
-    -- WebSocket
-    frame := service.new_ws_text_frame ("Hello", True)
+            <div class="api-section">
+                <h3>JWT Authentication</h3>
+                <div class="signature">new_jwt (a_secret: STRING): SIMPLE_JWT</div>
+                <div class="signature">create_token (a_secret, a_subject, a_issuer: STRING; a_expires: INTEGER): STRING</div>
+                <div class="signature">verify_token (a_secret, a_token: STRING): BOOLEAN</div>
+            </div>
 
-    -- Foundation utilities (inherited)
-    encoded := service.base64_encode ("data")
-    hash := service.sha256 ("password")
-    uuid := service.new_uuid
-end</code></pre>
+            <div class="api-section">
+                <h3>SQL Database</h3>
+                <div class="signature">new_database (a_path: STRING): SIMPLE_SQL</div>
+                <div class="signature">new_memory_database: SIMPLE_SQL</div>
+            </div>
 
-    <h2>API Reference</h2>
+            <div class="api-section">
+                <h3>SMTP Email</h3>
+                <div class="signature">new_smtp (a_host: STRING; a_port: INTEGER): SIMPLE_SMTP</div>
+            </div>
 
-    <h3>JWT Authentication</h3>
-    <table>
-        <tr><th>Feature</th><th>Description</th></tr>
-        <tr><td><code>new_jwt (secret)</code></td><td>Create JWT handler</td></tr>
-        <tr><td><code>create_token (secret, subject, issuer, expires)</code></td><td>Generate token</td></tr>
-        <tr><td><code>verify_token (secret, token)</code></td><td>Verify token</td></tr>
-    </table>
+            <div class="api-section">
+                <h3>CORS</h3>
+                <div class="signature">new_cors: SIMPLE_CORS</div>
+                <div class="signature">new_cors_permissive: SIMPLE_CORS</div>
+            </div>
 
-    <h3>SMTP Email</h3>
-    <table>
-        <tr><th>Feature</th><th>Description</th></tr>
-        <tr><td><code>new_smtp (host, port)</code></td><td>Create SMTP client</td></tr>
-    </table>
+            <div class="api-section">
+                <h3>Rate Limiting</h3>
+                <div class="signature">new_rate_limiter (a_max_requests, a_window_seconds: INTEGER): SIMPLE_RATE_LIMITER</div>
+            </div>
 
-    <h3>SQL Database</h3>
-    <table>
-        <tr><th>Feature</th><th>Description</th></tr>
-        <tr><td><code>new_database (path)</code></td><td>Open/create SQLite database</td></tr>
-        <tr><td><code>new_memory_database</code></td><td>Create in-memory database</td></tr>
-    </table>
+            <div class="api-section">
+                <h3>Templates</h3>
+                <div class="signature">new_template: SIMPLE_TEMPLATE</div>
+                <div class="signature">render_template (a_template: STRING; a_data: HASH_TABLE): STRING</div>
+            </div>
 
-    <h3>CORS</h3>
-    <table>
-        <tr><th>Feature</th><th>Description</th></tr>
-        <tr><td><code>new_cors</code></td><td>Create CORS handler with defaults</td></tr>
-        <tr><td><code>new_cors_permissive</code></td><td>Create permissive CORS handler</td></tr>
-    </table>
+            <div class="api-section">
+                <h3>WebSocket</h3>
+                <div class="signature">new_ws_handshake: WS_HANDSHAKE</div>
+                <div class="signature">new_ws_frame_parser: WS_FRAME_PARSER</div>
+                <div class="signature">new_ws_text_frame (a_text: STRING; a_is_final: BOOLEAN): WS_FRAME</div>
+                <div class="signature">new_ws_binary_frame (a_data: ARRAY[NATURAL_8]; a_is_final: BOOLEAN): WS_FRAME</div>
+                <div class="signature">new_ws_close_frame (a_code: INTEGER; a_reason: STRING): WS_FRAME</div>
+            </div>
+        </section>
 
-    <h3>Rate Limiting</h3>
-    <table>
-        <tr><th>Feature</th><th>Description</th></tr>
-        <tr><td><code>new_rate_limiter (max, window)</code></td><td>Create rate limiter</td></tr>
-    </table>
+        <section id="dependencies">
+            <h2>Bundled Libraries</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Library</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_jwt/">simple_jwt</a></td><td>JWT authentication</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_smtp/">simple_smtp</a></td><td>Email sending</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_sql/">simple_sql</a></td><td>SQLite database</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_cors/">simple_cors</a></td><td>CORS handling</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_rate_limiter/">simple_rate_limiter</a></td><td>Rate limiting</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_template/">simple_template</a></td><td>Template rendering</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_websocket/">simple_websocket</a></td><td>WebSocket protocol</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_foundation_api/">simple_foundation_api</a></td><td>Core utilities (inherited)</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 
-    <h3>Templates</h3>
-    <table>
-        <tr><th>Feature</th><th>Description</th></tr>
-        <tr><td><code>new_template</code></td><td>Create template engine</td></tr>
-        <tr><td><code>render_template (template, data)</code></td><td>Render with substitutions</td></tr>
-    </table>
-
-    <h3>WebSocket</h3>
-    <table>
-        <tr><th>Feature</th><th>Description</th></tr>
-        <tr><td><code>new_ws_handshake</code></td><td>Create handshake handler</td></tr>
-        <tr><td><code>new_ws_frame_parser</code></td><td>Create frame parser</td></tr>
-        <tr><td><code>new_ws_text_frame (text, is_final)</code></td><td>Create text frame</td></tr>
-        <tr><td><code>new_ws_binary_frame (data, is_final)</code></td><td>Create binary frame</td></tr>
-        <tr><td><code>new_ws_close_frame (code, reason)</code></td><td>Create close frame</td></tr>
-        <tr><td><code>new_ws_ping_frame</code></td><td>Create ping frame</td></tr>
-        <tr><td><code>new_ws_pong_frame</code></td><td>Create pong frame</td></tr>
-    </table>
-
-    <h3>Direct Access (Singleton Instances)</h3>
-    <table>
-        <tr><th>Feature</th><th>Description</th></tr>
-        <tr><td><code>jwt</code></td><td>SIMPLE_JWT instance</td></tr>
-        <tr><td><code>smtp</code></td><td>SIMPLE_SMTP instance</td></tr>
-        <tr><td><code>cors</code></td><td>SIMPLE_CORS instance</td></tr>
-        <tr><td><code>rate_limiter</code></td><td>SIMPLE_RATE_LIMITER instance</td></tr>
-        <tr><td><code>template</code></td><td>SIMPLE_TEMPLATE instance</td></tr>
-        <tr><td><code>websocket_handshake</code></td><td>WS_HANDSHAKE instance</td></tr>
-        <tr><td><code>websocket_parser</code></td><td>WS_FRAME_PARSER instance</td></tr>
-    </table>
-
-    <h2>Architecture</h2>
-    <pre>
-┌─────────────────────────────────────────┐
-│ simple_app_api (Application Layer)      │
-└─────────────────┬───────────────────────┘
-                  ▼
-┌─────────────────────────────────────────┐
-│ simple_service_api (Service Layer) ★    │
-└─────────────────┬───────────────────────┘
-                  ▼
-┌─────────────────────────────────────────┐
-│ simple_foundation_api (Foundation)      │
-└─────────────────────────────────────────┘
-    </pre>
-
-    <h2>License</h2>
-    <p>MIT License - Copyright (c) 2024-2025, Larry Rix</p>
-
-    <hr>
-    <p><a href="https://github.com/simple-eiffel/simple_service_api">GitHub Repository</a></p>
+    <footer>
+        <p>simple_service_api is part of the <a href="https://github.com/simple-eiffel">simple_*</a> library collection.</p>
+        <p class="copyright">&copy; 2024-2025 Larry Rix. MIT License.</p>
+    </footer>
 </body>
 </html>
