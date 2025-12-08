@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="Unified facade for web application services"/>
+<meta name="author" content="Larry Rix"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>service_api Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="service_api_chart.html">Chart</a>
+<a class="nav class" href="service_api_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="service_api"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;Unified facade for web application services&quot;</span>
+	<span class="eitag">author</span><span class="esymbol">:</span> <span class="estring">&quot;Larry Rix&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../src/service_api_short.html">SERVICE_API</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../src/service_api_short.html#f_make">make</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> JWT Authentication</span>
+
+	<a name="f_new_jwt"></a><a class="efeature" href="../src/service_api_short.html#f_new_jwt">new_jwt</a> <span class="esymbol">(</span><span class="elocal">a_secret</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_jwt/simple_jwt_short.html">SIMPLE_JWT</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new JWT handler with </span><span class="equoted">a_secret</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">secret_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_secret</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_create_token"></a><a class="efeature" href="../src/service_api_short.html#f_create_token">create_token</a> <span class="esymbol">(</span><span class="elocal">a_secret</span><span class="esymbol">,</span> <span class="elocal">a_subject</span><span class="esymbol">,</span> <span class="elocal">a_issuer</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_expires_in_seconds</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create a JWT token with standard claims.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">secret_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_secret</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+			<span class="etag">expires_positive</span><span class="esymbol">:</span> <span class="elocal">a_expires_in_seconds</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_verify_token"></a><a class="efeature" href="../src/service_api_short.html#f_verify_token">verify_token</a> <span class="esymbol">(</span><span class="elocal">a_secret</span><span class="esymbol">,</span> <span class="elocal">a_token</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Verify JWT token signature and expiration.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> SMTP Email</span>
+
+	<a name="f_new_smtp"></a><a class="efeature" href="../src/service_api_short.html#f_new_smtp">new_smtp</a> <span class="esymbol">(</span><span class="elocal">a_host</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_port</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_smtp/simple_smtp_short.html">SIMPLE_SMTP</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new SMTP client for </span><span class="equoted">a_host</span><span class="ecomment"> on </span><span class="equoted">a_port</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">host_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_host</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+			<span class="etag">port_valid</span><span class="esymbol">:</span> <span class="elocal">a_port</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <span class="elocal">a_port</span> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <span class="enumber">65536</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> SQL Database</span>
+
+	<a name="f_new_database"></a><a class="efeature" href="../src/service_api_short.html#f_new_database">new_database</a> <span class="esymbol">(</span><span class="elocal">a_path</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_sql/simple_sql_database_short.html">SIMPLE_SQL_DATABASE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new SQLite database at </span><span class="equoted">a_path</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">path_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_path</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_new_memory_database"></a><a class="efeature" href="../src/service_api_short.html#f_new_memory_database">new_memory_database</a><span class="esymbol">:</span> <a class="eclass" href="../simple_sql/simple_sql_database_short.html">SIMPLE_SQL_DATABASE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new in-memory SQLite database.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> CORS</span>
+
+	<a name="f_new_cors"></a><a class="efeature" href="../src/service_api_short.html#f_new_cors">new_cors</a><span class="esymbol">:</span> <a class="eclass" href="../simple_cors/simple_cors_short.html">SIMPLE_CORS</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new CORS handler with default settings.</span>
+
+	<a name="f_new_cors_permissive"></a><a class="efeature" href="../src/service_api_short.html#f_new_cors_permissive">new_cors_permissive</a><span class="esymbol">:</span> <a class="eclass" href="../simple_cors/simple_cors_short.html">SIMPLE_CORS</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new CORS handler allowing all origins.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Rate Limiting</span>
+
+	<a name="f_new_rate_limiter"></a><a class="efeature" href="../src/service_api_short.html#f_new_rate_limiter">new_rate_limiter</a> <span class="esymbol">(</span><span class="elocal">a_max_requests</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">;</span> <span class="elocal">a_window_seconds</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_rate_limiter/simple_rate_limiter_short.html">SIMPLE_RATE_LIMITER</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create rate limiter: </span><span class="equoted">a_max_requests</span><span class="ecomment"> per </span><span class="equoted">a_window_seconds</span><span class="ecomment">.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">max_requests_positive</span><span class="esymbol">:</span> <span class="elocal">a_max_requests</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+			<span class="etag">window_positive</span><span class="esymbol">:</span> <span class="elocal">a_window_seconds</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Templates</span>
+
+	<a name="f_new_template"></a><a class="efeature" href="../src/service_api_short.html#f_new_template">new_template</a><span class="esymbol">:</span> <a class="eclass" href="../simple_template/simple_template_short.html">SIMPLE_TEMPLATE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new template engine.</span>
+
+	<a name="f_render_template"></a><a class="efeature" href="../src/service_api_short.html#f_render_template">render_template</a> <span class="esymbol">(</span><span class="elocal">a_template</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_data</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/hash_table_short.html">HASH_TABLE</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">,</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">]</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Render </span><span class="equoted">a_template</span><span class="ecomment"> with </span><span class="equoted">a_data</span><span class="ecomment"> substitutions.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> WebSocket</span>
+
+	<a name="f_new_ws_handshake"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_handshake">new_ws_handshake</a><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_handshake_short.html">WS_HANDSHAKE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new WebSocket handshake handler.</span>
+
+	<a name="f_new_ws_frame_parser"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_frame_parser">new_ws_frame_parser</a><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_frame_parser_short.html">WS_FRAME_PARSER</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new WebSocket frame parser.</span>
+
+	<a name="f_new_ws_text_frame"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_text_frame">new_ws_text_frame</a> <span class="esymbol">(</span><span class="elocal">a_text</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_is_final</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_frame_short.html">WS_FRAME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create WebSocket text frame with </span><span class="equoted">a_text</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">is_text</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_frame_short.html#f_is_text">is_text</a>
+			<span class="etag">is_final_set</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_frame_short.html#f_is_fin">is_fin</a> <span class="esymbol">=</span> <span class="elocal">a_is_final</span>
+
+	<a name="f_new_ws_binary_frame"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_binary_frame">new_ws_binary_frame</a> <span class="esymbol">(</span><span class="elocal">a_data</span><span class="esymbol">:</span> <a class="eclass" href="../base/array_short.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/natural_8_short.html">NATURAL_8</a><span class="esymbol">]</span><span class="esymbol">;</span> <span class="elocal">a_is_final</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_frame_short.html">WS_FRAME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create WebSocket binary frame with </span><span class="equoted">a_data</span><span class="ecomment">.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">is_binary</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_frame_short.html#f_is_binary">is_binary</a>
+			<span class="etag">is_final_set</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_frame_short.html#f_is_fin">is_fin</a> <span class="esymbol">=</span> <span class="elocal">a_is_final</span>
+
+	<a name="f_new_ws_close_frame"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_close_frame">new_ws_close_frame</a> <span class="esymbol">(</span><span class="elocal">a_code</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">;</span> <span class="elocal">a_reason</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_frame_short.html">WS_FRAME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create WebSocket close frame.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">is_close</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_frame_short.html#f_is_close">is_close</a>
+
+	<a name="f_new_ws_ping_frame"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_ping_frame">new_ws_ping_frame</a><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_frame_short.html">WS_FRAME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create WebSocket ping frame.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">is_ping</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_frame_short.html#f_is_ping">is_ping</a>
+
+	<a name="f_new_ws_pong_frame"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_pong_frame">new_ws_pong_frame</a><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_frame_short.html">WS_FRAME</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create WebSocket pong frame.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">is_pong</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_frame_short.html#f_is_pong">is_pong</a>
+
+	<a name="f_new_ws_text_message"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_text_message">new_ws_text_message</a> <span class="esymbol">(</span><span class="elocal">a_text</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_message_short.html">WS_MESSAGE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create WebSocket text message.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">is_text</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_message_short.html#f_is_text">is_text</a>
+
+	<a name="f_new_ws_binary_message"></a><a class="efeature" href="../src/service_api_short.html#f_new_ws_binary_message">new_ws_binary_message</a> <span class="esymbol">(</span><span class="elocal">a_data</span><span class="esymbol">:</span> <a class="eclass" href="../base/array_short.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/natural_8_short.html">NATURAL_8</a><span class="esymbol">]</span><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_message_short.html">WS_MESSAGE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create WebSocket binary message.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">is_binary</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_websocket/ws_message_short.html#f_is_binary">is_binary</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> PDF Generation</span>
+
+	<a name="f_new_pdf"></a><a class="efeature" href="../src/service_api_short.html#f_new_pdf">new_pdf</a><span class="esymbol">:</span> <a class="eclass" href="../simple_pdf/simple_pdf_short.html">SIMPLE_PDF</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new PDF generator with default wkhtmltopdf engine.</span>
+
+	<a name="f_new_pdf_with_chrome"></a><a class="efeature" href="../src/service_api_short.html#f_new_pdf_with_chrome">new_pdf_with_chrome</a><span class="esymbol">:</span> <a class="eclass" href="../simple_pdf/simple_pdf_short.html">SIMPLE_PDF</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new PDF generator using Chrome engine.</span>
+
+	<a name="f_html_to_pdf"></a><a class="efeature" href="../src/service_api_short.html#f_html_to_pdf">html_to_pdf</a> <span class="esymbol">(</span><span class="elocal">a_html</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_pdf/simple_pdf_document_short.html">SIMPLE_PDF_DOCUMENT</a>
+			<span class="ecomment">--</span><span class="ecomment"> Convert HTML string to PDF using default settings.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">html_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_html</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_url_to_pdf"></a><a class="efeature" href="../src/service_api_short.html#f_url_to_pdf">url_to_pdf</a> <span class="esymbol">(</span><span class="elocal">a_url</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_pdf/simple_pdf_document_short.html">SIMPLE_PDF_DOCUMENT</a>
+			<span class="ecomment">--</span><span class="ecomment"> Convert URL to PDF using default settings.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">url_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_url</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_new_pdf_reader"></a><a class="efeature" href="../src/service_api_short.html#f_new_pdf_reader">new_pdf_reader</a><span class="esymbol">:</span> <a class="eclass" href="../simple_pdf/simple_pdf_reader_short.html">SIMPLE_PDF_READER</a>
+			<span class="ecomment">--</span><span class="ecomment"> Create new PDF text extractor.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Caching</span>
+
+	<a name="f_new_cache"></a><a class="efeature" href="../src/service_api_short.html#f_new_cache">new_cache</a> <span class="esymbol">(</span><span class="elocal">a_max_size</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_cache/simple_cache_short.html">SIMPLE_CACHE</a> <span class="esymbol">[</span><a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Create new cache with maximum </span><span class="equoted">a_max_size</span><span class="ecomment"> entries.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">positive_size</span><span class="esymbol">:</span> <span class="elocal">a_max_size</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">max_size_set</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_cache/simple_cache_short.html#f_max_size">max_size</a> <span class="esymbol">=</span> <span class="elocal">a_max_size</span>
+			<span class="etag">initially_empty</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_cache/simple_cache_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_new_cache_with_ttl"></a><a class="efeature" href="../src/service_api_short.html#f_new_cache_with_ttl">new_cache_with_ttl</a> <span class="esymbol">(</span><span class="elocal">a_max_size</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">;</span> <span class="elocal">a_default_ttl_seconds</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_cache/simple_cache_short.html">SIMPLE_CACHE</a> <span class="esymbol">[</span><a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Create new cache with max size and default TTL.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">positive_size</span><span class="esymbol">:</span> <span class="elocal">a_max_size</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+			<span class="etag">positive_ttl</span><span class="esymbol">:</span> <span class="elocal">a_default_ttl_seconds</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">max_size_set</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_cache/simple_cache_short.html#f_max_size">max_size</a> <span class="esymbol">=</span> <span class="elocal">a_max_size</span>
+			<span class="etag">ttl_set</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_cache/simple_cache_short.html#f_default_ttl">default_ttl</a> <span class="esymbol">=</span> <span class="elocal">a_default_ttl_seconds</span>
+			<span class="etag">initially_empty</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_cache/simple_cache_short.html#f_is_empty">is_empty</a>
+
+	<a name="f_new_string_cache"></a><a class="efeature" href="../src/service_api_short.html#f_new_string_cache">new_string_cache</a> <span class="esymbol">(</span><span class="elocal">a_max_size</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../simple_cache/simple_cache_short.html">SIMPLE_CACHE</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Create new string-value cache.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">positive_size</span><span class="esymbol">:</span> <span class="elocal">a_max_size</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">max_size_set</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_cache/simple_cache_short.html#f_max_size">max_size</a> <span class="esymbol">=</span> <span class="elocal">a_max_size</span>
+			<span class="etag">initially_empty</span><span class="esymbol">:</span> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../simple_cache/simple_cache_short.html#f_is_empty">is_empty</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Layer Access</span>
+
+	<a name="f_foundation"></a><a class="efeature" href="../src/service_api_short.html#f_foundation">Foundation</a><span class="esymbol">:</span> <a class="eclass" href="../simple_foundation_api/foundation_api_short.html">FOUNDATION_API</a>
+			<span class="ecomment">--</span><span class="ecomment"> Access to foundation layer features ONLY.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Returns isolated instance - only foundation features visible.</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Direct Access (Singleton Instances)</span>
+
+	<a name="f_jwt"></a><a class="efeature" href="../src/service_api_short.html#f_jwt">Jwt</a><span class="esymbol">:</span> <a class="eclass" href="../simple_jwt/simple_jwt_short.html">SIMPLE_JWT</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to JWT handler (create with default empty secret).</span>
+			<span class="ecomment">--</span><span class="ecomment"> Use </span><span class="ecomment">`</span><a class="efeature" href="../src/service_api_short.html#f_new_jwt">new_jwt</a><span class="ecomment">`</span><span class="ecomment"> for production with actual secret.</span>
+
+	<a name="f_smtp"></a><a class="efeature" href="../src/service_api_short.html#f_smtp">Smtp</a><span class="esymbol">:</span> <a class="eclass" href="../simple_smtp/simple_smtp_short.html">SIMPLE_SMTP</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to SMTP client (localhost:25 default).</span>
+			<span class="ecomment">--</span><span class="ecomment"> Use </span><span class="ecomment">`</span><a class="efeature" href="../src/service_api_short.html#f_new_smtp">new_smtp</a><span class="ecomment">`</span><span class="ecomment"> for production configuration.</span>
+
+	<a name="f_cors"></a><a class="efeature" href="../src/service_api_short.html#f_cors">Cors</a><span class="esymbol">:</span> <a class="eclass" href="../simple_cors/simple_cors_short.html">SIMPLE_CORS</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to CORS handler with defaults.</span>
+
+	<a name="f_rate_limiter"></a><a class="efeature" href="../src/service_api_short.html#f_rate_limiter">Rate_limiter</a><span class="esymbol">:</span> <a class="eclass" href="../simple_rate_limiter/simple_rate_limiter_short.html">SIMPLE_RATE_LIMITER</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to rate limiter (100 requests/minute default).</span>
+			<span class="ecomment">--</span><span class="ecomment"> Use </span><span class="ecomment">`</span><a class="efeature" href="../src/service_api_short.html#f_new_rate_limiter">new_rate_limiter</a><span class="ecomment">`</span><span class="ecomment"> for custom configuration.</span>
+
+	<a name="f_template"></a><a class="efeature" href="../src/service_api_short.html#f_template">Template</a><span class="esymbol">:</span> <a class="eclass" href="../simple_template/simple_template_short.html">SIMPLE_TEMPLATE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to template engine.</span>
+
+	<a name="f_websocket_handshake"></a><a class="efeature" href="../src/service_api_short.html#f_websocket_handshake">Websocket_handshake</a><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_handshake_short.html">WS_HANDSHAKE</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to WebSocket handshake handler.</span>
+
+	<a name="f_websocket_parser"></a><a class="efeature" href="../src/service_api_short.html#f_websocket_parser">Websocket_parser</a><span class="esymbol">:</span> <a class="eclass" href="../simple_websocket/ws_frame_parser_short.html">WS_FRAME_PARSER</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to WebSocket frame parser.</span>
+
+	<a name="f_cache"></a><a class="efeature" href="../src/service_api_short.html#f_cache">Cache</a><span class="esymbol">:</span> <a class="eclass" href="../simple_cache/simple_cache_short.html">SIMPLE_CACHE</a> <span class="esymbol">[</span><a class="eclass" href="../base/any_short.html">ANY</a><span class="esymbol">]</span>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to shared cache (1000 entries default).</span>
+			<span class="ecomment">--</span><span class="ecomment"> Use </span><span class="ecomment">`</span><a class="efeature" href="../src/service_api_short.html#f_new_cache">new_cache</a><span class="ecomment">`</span><span class="ecomment"> for custom configuration.</span>
+
+	<a name="f_pdf"></a><a class="efeature" href="../src/service_api_short.html#f_pdf">Pdf</a><span class="esymbol">:</span> <a class="eclass" href="../simple_pdf/simple_pdf_short.html">SIMPLE_PDF</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to PDF generator with default engine.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Use </span><span class="ecomment">`</span><a class="efeature" href="../src/service_api_short.html#f_new_pdf">new_pdf</a><span class="ecomment">`</span><span class="ecomment"> or </span><span class="ecomment">`</span><a class="efeature" href="../src/service_api_short.html#f_new_pdf_with_chrome">new_pdf_with_chrome</a><span class="ecomment">`</span><span class="ecomment"> for specific engines.</span>
+
+	<a name="f_pdf_reader"></a><a class="efeature" href="../src/service_api_short.html#f_pdf_reader">Pdf_reader</a><span class="esymbol">:</span> <a class="eclass" href="../simple_pdf/simple_pdf_reader_short.html">SIMPLE_PDF_READER</a>
+			<span class="ecomment">--</span><span class="ecomment"> Direct access to PDF text extractor.</span>
+	
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../src/service_api_short.html">SERVICE_API</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="service_api_chart.html">Chart</a>
+<a class="nav class" href="service_api_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="service_api"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTSimple SMTP - Native email sending for Eiffel.  TTSupports: TT- Plain SMTP (port 25) TT- SMTP with STARTTLS (port 587) TT- SMTP over SSL/TLS (port 465) TT- AUTH LOGIN and AUTH PLAIN authentication TT- Multiple recipients (To, Cc, Bcc) TT- HTML and plain text emails TT- Attachments (Base64 encoded)  TTUsage: TTTcreate smtp.make (smtp.example.com, 587) TTTsmtp.set_credentials (user@example.com, password) TTTsmtp.set_from (sender@example.com, Sender Name) TTTsmtp.add_to (recipient@example.com, Recipient) TTTsmtp.set_subject (Hello!) TTTsmtp.set_body (This is a test email.) TTTsmtp.send"/>
+<meta name="author" content="Larry Rix"/>
+<meta name="eis" content="name=Documentation, src=../docs/index.html, protocol=URI, tag=documentation"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2024-2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>simple_smtp Contracts</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="simple_smtp_chart.html">Chart</a>
+<a class="nav class" href="simple_smtp_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="simple_smtp"></span>
+</div></form><pre><span class="ekeyword">note</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;</span><span class="estring">[</span>
+		<span class="estring">		Simple SMTP - Native email sending for Eiffel.</span>
+		
+		<span class="estring">		Supports:</span>
+		<span class="estring">		- Plain SMTP (port 25)</span>
+		<span class="estring">		- SMTP with STARTTLS (port 587)</span>
+		<span class="estring">		- SMTP over SSL/TLS (port 465)</span>
+		<span class="estring">		- AUTH LOGIN and AUTH PLAIN authentication</span>
+		<span class="estring">		- Multiple recipients (To, Cc, Bcc)</span>
+		<span class="estring">		- HTML and plain text emails</span>
+		<span class="estring">		- Attachments (Base64 encoded)</span>
+		
+		<span class="estring">		Usage:</span>
+		<span class="estring">			create smtp.make (&quot;smtp.example.com&quot;, 587)</span>
+		<span class="estring">			smtp.set_credentials (&quot;</span><a class="estring" href="mailto:user@example.com",">user@example.com&quot;,</a><span class="estring"> &quot;password&quot;)</span>
+		<span class="estring">			smtp.set_from (&quot;</span><a class="estring" href="mailto:sender@example.com",">sender@example.com&quot;,</a><span class="estring"> &quot;Sender Name&quot;)</span>
+		<span class="estring">			smtp.add_to (&quot;</span><a class="estring" href="mailto:recipient@example.com",">recipient@example.com&quot;,</a><span class="estring"> &quot;Recipient&quot;)</span>
+		<span class="estring">			smtp.set_subject (&quot;Hello!&quot;)</span>
+		<span class="estring">			smtp.set_body (&quot;This is a test email.&quot;)</span>
+		<span class="estring">			smtp.send</span>
+	<span class="estring">]</span><span class="estring">&quot;</span>
+	<span class="eitag">author</span><span class="esymbol">:</span> <span class="estring">&quot;Larry Rix&quot;</span>
+	<span class="eitag">date</span><span class="esymbol">:</span> <span class="estring">&quot;$Date$&quot;</span>
+	<span class="eitag">revision</span><span class="esymbol">:</span> <span class="estring">&quot;$Revision$&quot;</span>
+	<span class="eitag">eis</span><span class="esymbol">:</span> <span class="estring">&quot;name=Documentation&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;src=../docs/index.html&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;protocol=URI&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;tag=documentation&quot;</span>
+	<span class="eitag">eis</span><span class="esymbol">:</span> <span class="estring">&quot;name=API Reference&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;src=../docs/api/simple_smtp.html&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;protocol=URI&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;tag=api&quot;</span>
+	<span class="eitag">eis</span><span class="esymbol">:</span> <span class="estring">&quot;name=RFC 5321&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;src=</span><a class="estring" href="https://datatracker.ietf.org/doc/html/rfc5321">https://datatracker.ietf.org/doc/html/rfc5321</a><span class="estring">&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;protocol=URI&quot;</span><span class="esymbol">,</span> <span class="estring">&quot;tag=specification&quot;</span>
+
+<span class="ekeyword">class</span> <span class="ekeyword">interface</span>
+	<a class="eclass" href="../simple_smtp/simple_smtp_short.html">SIMPLE_SMTP</a>
+
+<span class="ekeyword">create</span> 
+	<a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_make">make</a>
+
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Configuration</span>
+
+	<a name="f_set_credentials"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_credentials">set_credentials</a> <span class="esymbol">(</span><span class="elocal">a_username</span><span class="esymbol">,</span> <span class="elocal">a_password</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set authentication credentials.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">username_not_void</span><span class="esymbol">:</span> <span class="elocal">a_username</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">password_not_void</span><span class="esymbol">:</span> <span class="elocal">a_password</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">username_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_username">username</a> <span class="esymbol">=</span> <span class="elocal">a_username</span>
+			<span class="etag">password_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_password">password</a> <span class="esymbol">=</span> <span class="elocal">a_password</span>
+
+	<a name="f_set_auth_method"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_auth_method">set_auth_method</a> <span class="esymbol">(</span><span class="elocal">a_method</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set authentication method: &quot;PLAIN&quot; or &quot;LOGIN&quot;.</span>
+			<span class="ecomment">--</span><span class="ecomment"> Default is to try LOGIN first.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">method_not_void</span><span class="esymbol">:</span> <span class="elocal">a_method</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">valid_method</span><span class="esymbol">:</span> <span class="elocal">a_method</span><span class="edot">.</span><a class="efeature" href="../base/string_8_short.html#f_as_upper">as_upper</a><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;PLAIN&quot;<span class="esymbol">)</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted">or</a> <span class="elocal">a_method</span><span class="edot">.</span><a class="efeature" href="../base/string_8_short.html#f_as_upper">as_upper</a><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;LOGIN&quot;<span class="esymbol">)</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">method_set</span><span class="esymbol">:</span> <span class="ekeyword">attached</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_auth_method">auth_method</a> <span class="ekeyword">as</span> m <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <span class="elocal">m</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">a_method</span><span class="edot">.</span><a class="efeature" href="../base/string_8_short.html#f_as_upper">as_upper</a><span class="esymbol">)</span>
+
+	<a name="f_prefer_auth_plain"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_prefer_auth_plain">prefer_auth_plain</a>
+			<span class="ecomment">--</span><span class="ecomment"> Prefer AUTH PLAIN over AUTH LOGIN.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">plain_set</span><span class="esymbol">:</span> <span class="ekeyword">attached</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_auth_method">auth_method</a> <span class="ekeyword">as</span> m <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <span class="elocal">m</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span>&quot;PLAIN&quot;<span class="esymbol">)</span>
+
+	<a name="f_set_from"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_from">set_from</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set sender email and optional display name.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">email_not_void</span><span class="esymbol">:</span> <span class="elocal">a_email</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">email_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_email</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">from_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_internal_from_email">internal_from_email</a><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">)</span>
+			<span class="etag">has_from</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_sender">has_sender</a>
+
+	<a name="f_set_reply_to"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_reply_to">set_reply_to</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set Reply-To email address and optional display name.</span>
+			<span class="ecomment">--</span><span class="ecomment"> If set, recipients will reply to this address instead of From.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">email_not_void</span><span class="esymbol">:</span> <span class="elocal">a_email</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">email_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_email</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">reply_to_set</span><span class="esymbol">:</span> <span class="ekeyword">attached</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_reply_to_email">reply_to_email</a> <span class="ekeyword">as</span> rte <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted_semistrict">and then</a> <span class="elocal">rte</span><span class="edot">.</span><a class="efeature" href="../base/readable_string_8_short.html#f_same_string">same_string</a><span class="esymbol"> </span><span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">)</span>
+			<span class="etag">has_reply_to</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_reply_to_set">has_reply_to_set</a>
+
+	<a name="f_clear_reply_to"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_clear_reply_to">clear_reply_to</a>
+			<span class="ecomment">--</span><span class="ecomment"> Clear Reply-To address.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">no_reply_to</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_reply_to_set">has_reply_to_set</a>
+
+	<a name="f_set_timeout"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_timeout">set_timeout</a> <span class="esymbol">(</span><span class="elocal">a_seconds</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set connection timeout in seconds.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">positive</span><span class="esymbol">:</span> <span class="elocal">a_seconds</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">timeout_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_timeout_seconds">timeout_seconds</a> <span class="esymbol">=</span> <span class="elocal">a_seconds</span>
+
+	<a name="f_enable_tls"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_enable_tls">enable_tls</a>
+			<span class="ecomment">--</span><span class="ecomment"> Enable TLS/SSL connection (port 465 style).</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">tls_enabled</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_use_tls">use_tls</a>
+			<span class="etag">starttls_disabled</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_use_starttls">use_starttls</a>
+
+	<a name="f_enable_starttls"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_enable_starttls">enable_starttls</a>
+			<span class="ecomment">--</span><span class="ecomment"> Enable STARTTLS upgrade (port 587 style).</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">starttls_enabled</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_use_starttls">use_starttls</a>
+			<span class="etag">tls_disabled</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_use_tls">use_tls</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Recipients</span>
+
+	<a name="f_add_to"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_add_to">add_to</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add a To recipient.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">email_not_void</span><span class="esymbol">:</span> <span class="elocal">a_email</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">email_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_email</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">recipient_added</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_count">to_count</a> <span class="esymbol">=</span> <span class="ekeyword">old</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_count">to_count</a> <a class="esymbol" href="../base/integer_32_short.html#f_plus">+</a> <span class="enumber">1</span>
+
+	<a name="f_add_cc"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_add_cc">add_cc</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add a Cc recipient.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">email_not_void</span><span class="esymbol">:</span> <span class="elocal">a_email</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">email_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_email</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">recipient_added</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_count">cc_count</a> <span class="esymbol">=</span> <span class="ekeyword">old</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_count">cc_count</a> <a class="esymbol" href="../base/integer_32_short.html#f_plus">+</a> <span class="enumber">1</span>
+
+	<a name="f_add_bcc"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_add_bcc">add_bcc</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add a Bcc recipient.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">email_not_void</span><span class="esymbol">:</span> <span class="elocal">a_email</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">email_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="elocal">a_email</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">recipient_added</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_count">bcc_count</a> <span class="esymbol">=</span> <span class="ekeyword">old</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_count">bcc_count</a> <a class="esymbol" href="../base/integer_32_short.html#f_plus">+</a> <span class="enumber">1</span>
+
+	<a name="f_clear_recipients"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_clear_recipients">clear_recipients</a>
+			<span class="ecomment">--</span><span class="ecomment"> Clear all recipients.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">no_to</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_count">to_count</a> <span class="esymbol">=</span> <span class="enumber">0</span>
+			<span class="etag">no_cc</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_count">cc_count</a> <span class="esymbol">=</span> <span class="enumber">0</span>
+			<span class="etag">no_bcc</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_count">bcc_count</a> <span class="esymbol">=</span> <span class="enumber">0</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Content</span>
+
+	<a name="f_set_subject"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_subject">set_subject</a> <span class="esymbol">(</span><span class="elocal">a_subject</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set email subject.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">subject_not_void</span><span class="esymbol">:</span> <span class="elocal">a_subject</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">subject_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_internal_subject">internal_subject</a> <span class="esymbol">=</span> <span class="elocal">a_subject</span>
+			<span class="etag">has_subject</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_subject_set">has_subject_set</a>
+
+	<a name="f_set_body"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_body">set_body</a> <span class="esymbol">(</span><span class="elocal">a_body</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set plain text body.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">body_not_void</span><span class="esymbol">:</span> <span class="elocal">a_body</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">body_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_body_text">body_text</a> <span class="esymbol">=</span> <span class="elocal">a_body</span>
+			<span class="etag">has_body</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_body_set">has_body_set</a>
+
+	<a name="f_set_html_body"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_html_body">set_html_body</a> <span class="esymbol">(</span><span class="elocal">a_html</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set HTML body.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">html_not_void</span><span class="esymbol">:</span> <span class="elocal">a_html</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">html_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_body_html">body_html</a> <span class="esymbol">=</span> <span class="elocal">a_html</span>
+			<span class="etag">has_body</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_body_set">has_body_set</a>
+
+	<a name="f_set_body_with_html"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_body_with_html">set_body_with_html</a> <span class="esymbol">(</span><span class="elocal">a_text</span><span class="esymbol">,</span> <span class="elocal">a_html</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Set both plain text and HTML body (multipart/alternative).</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">text_not_void</span><span class="esymbol">:</span> <span class="elocal">a_text</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">html_not_void</span><span class="esymbol">:</span> <span class="elocal">a_html</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">text_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_body_text">body_text</a> <span class="esymbol">=</span> <span class="elocal">a_text</span>
+			<span class="etag">html_set</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_body_html">body_html</a> <span class="esymbol">=</span> <span class="elocal">a_html</span>
+
+	<a name="f_add_attachment"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_add_attachment">add_attachment</a> <span class="esymbol">(</span><span class="elocal">a_filename</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_content</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_mime_type</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Add an attachment.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">filename_not_void</span><span class="esymbol">:</span> <span class="elocal">a_filename</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">content_not_void</span><span class="esymbol">:</span> <span class="elocal">a_content</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">mime_not_void</span><span class="esymbol">:</span> <span class="elocal">a_mime_type</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">attachment_added</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_count">attachment_count</a> <span class="esymbol">=</span> <span class="ekeyword">old</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_count">attachment_count</a> <a class="esymbol" href="../base/integer_32_short.html#f_plus">+</a> <span class="enumber">1</span>
+
+	<a name="f_clear_attachments"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_clear_attachments">clear_attachments</a>
+			<span class="ecomment">--</span><span class="ecomment"> Clear all attachments.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">no_attachments</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_count">attachment_count</a> <span class="esymbol">=</span> <span class="enumber">0</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Query (public for preconditions)</span>
+
+	<a name="f_has_sender"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_sender">has_sender</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Has sender been set?</span>
+
+	<a name="f_has_recipients"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_recipients">has_recipients</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Are there any To recipients?</span>
+
+	<a name="f_has_subject_set"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_subject_set">has_subject_set</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Has subject been set?</span>
+
+	<a name="f_has_body_set"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_body_set">has_body_set</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Has body (text or HTML) been set?</span>
+
+	<a name="f_has_reply_to_set"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_reply_to_set">has_reply_to_set</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Has Reply-To address been set?</span>
+
+	<a name="f_is_valid_email"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_is_valid_email">is_valid_email</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Is </span><span class="equoted">a_email</span><span class="ecomment"> a valid email address?</span>
+			<span class="ecomment">--</span><span class="ecomment"> Basic validation: non-empty, one @, local and domain parts present.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">empty_invalid</span><span class="esymbol">:</span> <span class="elocal">a_email</span> <span class="esymbol">=</span> <span class="ekeyword">Void</span> <a class="ekeyword" href="../base/boolean_short.html#f_disjuncted_semistrict">or else</a> <span class="elocal">a_email</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a> <a class="ekeyword" href="../base/boolean_short.html#f_implication">implies</a> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="ekeyword">Result</span>
+
+	<a name="f_to_count"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_count">to_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of To recipients.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">non_negative</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+
+	<a name="f_cc_count"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_count">cc_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of Cc recipients.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">non_negative</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+
+	<a name="f_bcc_count"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_count">bcc_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of Bcc recipients.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">non_negative</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+
+	<a name="f_attachment_count"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_count">attachment_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_short.html">INTEGER_32</a>
+			<span class="ecomment">--</span><span class="ecomment"> Number of attachments.</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">non_negative</span><span class="esymbol">:</span> <span class="ekeyword">Result</span> <a class="esymbol" href="../base/comparable_short.html#f_is_greater_equal">&gt;=</a> <span class="enumber">0</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Sending</span>
+
+	<a name="f_send"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_send">send</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Send the email. Returns True on success.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">has_from</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_sender">has_sender</a>
+			<span class="etag">has_recipients</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_recipients">has_recipients</a>
+			<span class="etag">has_subject</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_subject_set">has_subject_set</a>
+			<span class="etag">has_body</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_body_set">has_body_set</a>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">error_on_failure</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="ekeyword">Result</span> <a class="ekeyword" href="../base/boolean_short.html#f_implication">implies</a> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_error">has_error</a>
+
+	<a name="f_send_async"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_send_async">send_async</a> <span class="esymbol">(</span><span class="elocal">a_callback</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/procedure_short.html">PROCEDURE</a> <span class="esymbol">[</span><a class="eclass" href="../base/boolean_short.html">BOOLEAN</a><span class="esymbol">]</span><span class="esymbol">)</span>
+			<span class="ecomment">--</span><span class="ecomment"> Send email asynchronously, calling </span><span class="equoted">a_callback</span><span class="ecomment"> with result.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">has_from</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_sender">has_sender</a>
+			<span class="etag">has_recipients</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_recipients">has_recipients</a>
+			<span class="etag">has_subject</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_subject_set">has_subject_set</a>
+			<span class="etag">has_body</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_body_set">has_body_set</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Status</span>
+
+	<a name="f_last_response"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_last_response">last_response</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Last SMTP server response.</span>
+
+	<a name="f_last_error"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_last_error">last_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Last error message (empty if no error).</span>
+
+	<a name="f_has_error"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_error">has_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_short.html">BOOLEAN</a>
+			<span class="ecomment">--</span><span class="ecomment"> Did the last operation produce an error?</span>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> Message Building</span>
+
+	<a name="f_build_message"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_build_message">build_message</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Build the complete email message.</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">has_from</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_sender">has_sender</a>
+	
+<span class="ekeyword">feature</span> <span class="ecomment">--</span><span class="ecomment"> AUTH PLAIN Support</span>
+
+	<a name="f_build_auth_plain_credentials"></a><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_build_auth_plain_credentials">build_auth_plain_credentials</a> <span class="esymbol">(</span><span class="elocal">a_user</span><span class="esymbol">,</span> <span class="elocal">a_pass</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_short.html">STRING_8</a>
+			<span class="ecomment">--</span><span class="ecomment"> Build AUTH PLAIN credentials string (Base64 encoded).</span>
+			<span class="ecomment">--</span><span class="ecomment"> Format: \0username\0password (NUL-separated).</span>
+		<span class="ekeyword">require</span>
+			<span class="etag">user_not_void</span><span class="esymbol">:</span> <span class="elocal">a_user</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+			<span class="etag">pass_not_void</span><span class="esymbol">:</span> <span class="elocal">a_pass</span> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+		<span class="ekeyword">ensure</span>
+			<span class="etag">result_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="ekeyword">Result</span><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+	
+<span class="ekeyword">invariant</span>
+	<span class="etag">host_exists</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_host">host</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">host_not_empty</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_host">host</a><span class="edot">.</span><a class="efeature" href="../base/finite_short.html#f_is_empty">is_empty</a>
+	<span class="etag">valid_port</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_port">port</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_port">port</a> <a class="esymbol" href="../base/integer_32_short.html#f_is_less">&lt;</a> <span class="enumber">65536</span>
+	<span class="etag">to_emails_exist</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_emails">to_emails</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">to_names_exist</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_names">to_names</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">to_lists_match</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_emails">to_emails</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a> <span class="esymbol">=</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_names">to_names</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a>
+	<span class="etag">cc_emails_exist</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_emails">cc_emails</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">cc_names_exist</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_names">cc_names</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">cc_lists_match</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_emails">cc_emails</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a> <span class="esymbol">=</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_names">cc_names</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a>
+	<span class="etag">bcc_emails_exist</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_emails">bcc_emails</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">bcc_names_exist</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_names">bcc_names</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">bcc_lists_match</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_emails">bcc_emails</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a> <span class="esymbol">=</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_names">bcc_names</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a>
+	<span class="etag">attachments_consistent</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_names">attachment_names</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a> <span class="esymbol">=</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_contents">attachment_contents</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_contents">attachment_contents</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a> <span class="esymbol">=</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_types">attachment_types</a><span class="edot">.</span><a class="efeature" href="../base/arrayed_list_short.html#f_count">count</a>
+	<span class="etag">foundation_exists</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_foundation">foundation</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">timeout_positive</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_timeout_seconds">timeout_seconds</a> <a class="esymbol" href="../base/comparable_short.html#f_is_greater">&gt;</a> <span class="enumber">0</span>
+	<span class="etag">last_response_exists</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_last_response">last_response</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">last_error_exists</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_last_error">last_error</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">from_email_exists</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_internal_from_email">internal_from_email</a> <span class="esymbol">/=</span> <span class="ekeyword">Void</span>
+	<span class="etag">tls_modes_exclusive</span><span class="esymbol">:</span> <a class="ekeyword" href="../base/boolean_short.html#f_negated">not</a> <span class="esymbol">(</span><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_use_tls">use_tls</a> <a class="ekeyword" href="../base/boolean_short.html#f_conjuncted">and</a> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_use_starttls">use_starttls</a><span class="esymbol">)</span>
+
+<span class="ekeyword">note</span>
+	<span class="eitag">copyright</span><span class="esymbol">:</span> <span class="estring">&quot;Copyright (c) 2024-2025, Larry Rix&quot;</span>
+	<span class="eitag">license</span><span class="esymbol">:</span> <span class="estring">&quot;MIT License&quot;</span>
+
+<span class="ekeyword">end</span> <span class="ecomment">--</span> <span class="ecomment">class </span><a class="eclass" href="../simple_smtp/simple_smtp_short.html">SIMPLE_SMTP</a></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<a class="nav class" href="simple_smtp_chart.html">Chart</a>
+<a class="nav class" href="simple_smtp_links.html">Relations</a>
+<span class="nav class selected">Contracts</span>
+<span class="nav class goto">Go to: <input name="c" value="simple_smtp"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
+

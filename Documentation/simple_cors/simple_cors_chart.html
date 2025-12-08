@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="CORS (Cross-Origin Resource Sharing) support following the Fetch Standard"/>
+<meta name="author" content="Larry Rix"/>
+<meta name="eis" content="name=Fetch Standard CORS, protocol=URI, src=https://fetch.spec.whatwg.org/#http-cors-protocol"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>simple_cors Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="simple_cors_links.html">Relations</a>
+<a class="nav class" href="simple_cors_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="simple_cors"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../simple_cors/simple_cors_chart.html">SIMPLE_CORS</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <span class="necluster">src</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> <span class="estring">&quot;CORS (Cross-Origin Resource Sharing) support following the Fetch Standard&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../simple_cors/simple_cors_short.html#f_make">make</a><span class="esymbol">,</span> <a class="efeature" href="../simple_cors/simple_cors_short.html#f_make_permissive">make_permissive</a><span class="esymbol">,</span> <a class="efeature" href="../simple_cors/simple_cors_short.html#f_make_restrictive">make_restrictive</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../base/any_chart.html">ANY</a>
+
+<span class="ekeyword">Queries</span>
+	<span title="`allow_all_headers_enabled' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_all_headers_enabled">allow_all_headers_enabled</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`allow_all_methods_enabled' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_all_methods_enabled">allow_all_methods_enabled</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`allow_all_origins_enabled' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_all_origins_enabled">allow_all_origins_enabled</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`allowed_headers' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allowed_headers">allowed_headers</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_chart.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span></span>
+	<span title="`allowed_methods' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allowed_methods">allowed_methods</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_chart.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span></span>
+	<span title="`allowed_origins' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allowed_origins">allowed_origins</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_chart.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span></span>
+	<span title="`are_headers_allowed' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_are_headers_allowed">are_headers_allowed</a> <span class="esymbol">(</span><span class="elocal">a_headers</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`credentials_allowed' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_credentials_allowed">credentials_allowed</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`default_max_age' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_default_max_age">Default_max_age</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`exposed_headers' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_exposed_headers">exposed_headers</a><span class="esymbol">:</span> <a class="eclass" href="../base/arrayed_list_chart.html">ARRAYED_LIST</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span></span>
+	<span title="`headers_for_preflight' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_headers_for_preflight">headers_for_preflight</a> <span class="esymbol">(</span><span class="elocal">a_origin</span><span class="esymbol">,</span> <span class="elocal">a_method</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_request_headers</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/hash_table_chart.html">HASH_TABLE</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">,</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span></span>
+	<span title="`headers_for_simple_request' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_headers_for_simple_request">headers_for_simple_request</a> <span class="esymbol">(</span><span class="elocal">a_origin</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/hash_table_chart.html">HASH_TABLE</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">,</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span></span>
+	<span title="`is_cors_request' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_is_cors_request">is_cors_request</a> <span class="esymbol">(</span><span class="elocal">a_origin</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_header_allowed' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_is_header_allowed">is_header_allowed</a> <span class="esymbol">(</span><span class="elocal">a_header</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_method_allowed' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_is_method_allowed">is_method_allowed</a> <span class="esymbol">(</span><span class="elocal">a_method</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_origin_allowed' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_is_origin_allowed">is_origin_allowed</a> <span class="esymbol">(</span><span class="elocal">a_origin</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_preflight_request' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_is_preflight_request">is_preflight_request</a> <span class="esymbol">(</span><span class="elocal">a_method</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_origin</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`max_age' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_max_age">max_age</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`allow_all_headers' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_all_headers">allow_all_headers</a></span>
+	<span title="`allow_all_methods' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_all_methods">allow_all_methods</a></span>
+	<span title="`allow_all_origins' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_all_origins">allow_all_origins</a></span>
+	<span title="`allow_credentials' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_credentials">allow_credentials</a></span>
+	<span title="`allow_header' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_header">allow_header</a> <span class="esymbol">(</span><span class="elocal">a_header</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`allow_headers' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_headers">allow_headers</a> <span class="esymbol">(</span><span class="elocal">a_list</span><span class="esymbol">:</span> <a class="eclass" href="../base/array_chart.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span><span class="esymbol">)</span></span>
+	<span title="`allow_method' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_method">allow_method</a> <span class="esymbol">(</span><span class="elocal">a_method</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`allow_methods' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_methods">allow_methods</a> <span class="esymbol">(</span><span class="elocal">a_list</span><span class="esymbol">:</span> <a class="eclass" href="../base/array_chart.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span><span class="esymbol">)</span></span>
+	<span title="`allow_origin' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_origin">allow_origin</a> <span class="esymbol">(</span><span class="elocal">a_origin</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`allow_origin_pattern' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_origin_pattern">allow_origin_pattern</a> <span class="esymbol">(</span><span class="elocal">a_pattern</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`allow_origins' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_allow_origins">allow_origins</a> <span class="esymbol">(</span><span class="elocal">a_list</span><span class="esymbol">:</span> <a class="eclass" href="../base/array_chart.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span><span class="esymbol">)</span></span>
+	<span title="`disallow_all_origins' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_disallow_all_origins">disallow_all_origins</a></span>
+	<span title="`disallow_credentials' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_disallow_credentials">disallow_credentials</a></span>
+	<span title="`expose_header' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_expose_header">expose_header</a> <span class="esymbol">(</span><span class="elocal">a_header</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`expose_headers' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_expose_headers">expose_headers</a> <span class="esymbol">(</span><span class="elocal">a_list</span><span class="esymbol">:</span> <a class="eclass" href="../base/array_chart.html">ARRAY</a> <span class="esymbol">[</span><a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">]</span><span class="esymbol">)</span></span>
+	<span title="`set_max_age' is declared in `Current'"><a class="efeature" href="../simple_cors/simple_cors_short.html#f_set_max_age">set_max_age</a> <span class="esymbol">(</span><span class="elocal">a_seconds</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a><span class="esymbol">)</span></span>
+
+<span class="ekeyword">Constraints</span>
+	<span class="etag">allowed origins attached</span>
+	<span class="etag">allowed methods attached</span>
+	<span class="etag">allowed headers attached</span>
+	<span class="etag">exposed headers attached</span>
+	<span class="etag">max age non negative</span>
+	<span class="etag">credentials origin constraint</span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="simple_cors_links.html">Relations</a>
+<a class="nav class" href="simple_cors_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="simple_cors"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>

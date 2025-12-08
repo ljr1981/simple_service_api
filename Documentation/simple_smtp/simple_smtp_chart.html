@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="generator" content="ISE EiffelStudio version 25.02.9.8732 - win64">
+<meta name="description" content="TTSimple SMTP - Native email sending for Eiffel.  TTSupports: TT- Plain SMTP (port 25) TT- SMTP with STARTTLS (port 587) TT- SMTP over SSL/TLS (port 465) TT- AUTH LOGIN and AUTH PLAIN authentication TT- Multiple recipients (To, Cc, Bcc) TT- HTML and plain text emails TT- Attachments (Base64 encoded)  TTUsage: TTTcreate smtp.make (smtp.example.com, 587) TTTsmtp.set_credentials (user@example.com, password) TTTsmtp.set_from (sender@example.com, Sender Name) TTTsmtp.add_to (recipient@example.com, Recipient) TTTsmtp.set_subject (Hello!) TTTsmtp.set_body (This is a test email.) TTTsmtp.send"/>
+<meta name="author" content="Larry Rix"/>
+<meta name="eis" content="name=Documentation, src=../docs/index.html, protocol=URI, tag=documentation"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 2024-2025, Larry Rix"/>
+<meta name="license" content="MIT License"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<title>simple_smtp Chart</title>
+<link rel="stylesheet" href="../default.css" type="text/css">
+<script type="text/javascript" src="../goto.html"></script>
+</head>
+<body>
+<pre></pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="simple_smtp_links.html">Relations</a>
+<a class="nav class" href="simple_smtp_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="simple_smtp"></span>
+</div></form><pre><span class="ekeyword">class</span>
+	<a class="eclass" href="../simple_smtp/simple_smtp_chart.html">SIMPLE_SMTP</a>
+
+<span class="ekeyword">General</span>
+	<span class="eitag">cluster</span><span class="esymbol">:</span> <span class="necluster">src</span>
+	<span class="eitag">description</span><span class="esymbol">:</span> 
+		<span class="estring">&quot;Simple SMTP - Native email sending for Eiffel.</span>
+		
+		<span class="estring">Supports:</span>
+		<span class="estring">- Plain SMTP (port 25)</span>
+		<span class="estring">- SMTP with STARTTLS (port 587)</span>
+		<span class="estring">- SMTP over SSL/TLS (port 465)</span>
+		<span class="estring">- AUTH LOGIN and AUTH PLAIN authentication</span>
+		<span class="estring">- Multiple recipients (To, Cc, Bcc)</span>
+		<span class="estring">- HTML and plain text emails</span>
+		<span class="estring">- Attachments (Base64 encoded)</span>
+		
+		<span class="estring">Usage:</span>
+		<span class="estring">create smtp.make (%&quot;smtp.example.com%&quot;, 587)</span>
+		<span class="estring">smtp.set_credentials (%&quot;</span><a class="estring" href="mailto:user@example.com%",">user@example.com%&quot;,</a><span class="estring"> %&quot;password%&quot;)</span>
+		<span class="estring">smtp.set_from (%&quot;</span><a class="estring" href="mailto:sender@example.com%",">sender@example.com%&quot;,</a><span class="estring"> %&quot;Sender Name%&quot;)</span>
+		<span class="estring">smtp.add_to (%&quot;</span><a class="estring" href="mailto:recipient@example.com%",">recipient@example.com%&quot;,</a><span class="estring"> %&quot;Recipient%&quot;)</span>
+		<span class="estring">smtp.set_subject (%&quot;Hello!%&quot;)</span>
+		<span class="estring">smtp.set_body (%&quot;This is a test email.%&quot;)</span>
+		<span class="estring">smtp.send&quot;</span>
+	<span class="eitag">create</span><span class="esymbol">:</span> <a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_make">make</a>
+
+<span class="ekeyword">Ancestors</span>
+	<a class="eclass" href="../base/any_chart.html">ANY</a>
+
+<span class="ekeyword">Queries</span>
+	<span title="`attachment_count' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_attachment_count">attachment_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`bcc_count' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_bcc_count">bcc_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`build_auth_plain_credentials' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_build_auth_plain_credentials">build_auth_plain_credentials</a> <span class="esymbol">(</span><span class="elocal">a_user</span><span class="esymbol">,</span> <span class="elocal">a_pass</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`build_message' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_build_message">build_message</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`cc_count' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_cc_count">cc_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+	<span title="`has_body_set' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_body_set">has_body_set</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`has_error' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_error">has_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`has_recipients' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_recipients">has_recipients</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`has_reply_to_set' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_reply_to_set">has_reply_to_set</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`has_sender' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_sender">has_sender</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`has_subject_set' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_has_subject_set">has_subject_set</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`is_valid_email' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_is_valid_email">is_valid_email</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`last_error' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_last_error">last_error</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`last_response' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_last_response">last_response</a><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a></span>
+	<span title="`send' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_send">send</a><span class="esymbol">:</span> <a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a></span>
+	<span title="`to_count' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_to_count">to_count</a><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a></span>
+
+<span class="ekeyword">Commands</span>
+	<span title="`add_attachment' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_add_attachment">add_attachment</a> <span class="esymbol">(</span><span class="elocal">a_filename</span><span class="esymbol">,</span> <span class="elocal">a_content</span><span class="esymbol">,</span> <span class="elocal">a_mime_type</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`add_bcc' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_add_bcc">add_bcc</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`add_cc' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_add_cc">add_cc</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`add_to' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_add_to">add_to</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`clear_attachments' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_clear_attachments">clear_attachments</a></span>
+	<span title="`clear_recipients' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_clear_recipients">clear_recipients</a></span>
+	<span title="`clear_reply_to' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_clear_reply_to">clear_reply_to</a></span>
+	<span title="`enable_starttls' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_enable_starttls">enable_starttls</a></span>
+	<span title="`enable_tls' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_enable_tls">enable_tls</a></span>
+	<span title="`prefer_auth_plain' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_prefer_auth_plain">prefer_auth_plain</a></span>
+	<span title="`send_async' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_send_async">send_async</a> <span class="esymbol">(</span><span class="elocal">a_callback</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/procedure_chart.html">PROCEDURE</a> <span class="esymbol">[</span><a class="eclass" href="../base/boolean_chart.html">BOOLEAN</a><span class="esymbol">]</span><span class="esymbol">)</span></span>
+	<span title="`set_auth_method' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_auth_method">set_auth_method</a> <span class="esymbol">(</span><span class="elocal">a_method</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_body' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_body">set_body</a> <span class="esymbol">(</span><span class="elocal">a_body</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_body_with_html' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_body_with_html">set_body_with_html</a> <span class="esymbol">(</span><span class="elocal">a_text</span><span class="esymbol">,</span> <span class="elocal">a_html</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_credentials' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_credentials">set_credentials</a> <span class="esymbol">(</span><span class="elocal">a_username</span><span class="esymbol">,</span> <span class="elocal">a_password</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_from' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_from">set_from</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_html_body' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_html_body">set_html_body</a> <span class="esymbol">(</span><span class="elocal">a_html</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_reply_to' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_reply_to">set_reply_to</a> <span class="esymbol">(</span><span class="elocal">a_email</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">;</span> <span class="elocal">a_name</span><span class="esymbol">:</span> <span class="ekeyword">detachable</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_subject' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_subject">set_subject</a> <span class="esymbol">(</span><span class="elocal">a_subject</span><span class="esymbol">:</span> <a class="eclass" href="../base/string_8_chart.html">STRING_8</a><span class="esymbol">)</span></span>
+	<span title="`set_timeout' is declared in `Current'"><a class="efeature" href="../simple_smtp/simple_smtp_short.html#f_set_timeout">set_timeout</a> <span class="esymbol">(</span><span class="elocal">a_seconds</span><span class="esymbol">:</span> <a class="eclass" href="../base/integer_32_chart.html">INTEGER_32</a><span class="esymbol">)</span></span>
+
+<span class="ekeyword">Constraints</span>
+	<span class="etag">host exists</span>
+	<span class="etag">host not empty</span>
+	<span class="etag">valid port</span>
+	<span class="etag">to emails exist</span>
+	<span class="etag">to names exist</span>
+	<span class="etag">to lists match</span>
+	<span class="etag">cc emails exist</span>
+	<span class="etag">cc names exist</span>
+	<span class="etag">cc lists match</span>
+	<span class="etag">bcc emails exist</span>
+	<span class="etag">bcc names exist</span>
+	<span class="etag">bcc lists match</span>
+	<span class="etag">attachments consistent</span>
+	<span class="etag">foundation exists</span>
+	<span class="etag">timeout positive</span>
+	<span class="etag">last response exists</span>
+	<span class="etag">last error exists</span>
+	<span class="etag">from email exists</span>
+	<span class="etag">tls modes exclusive</span>
+
+</pre><form class="nav" onsubmit="go_to('../',this.c.value);return false;">
+<div class="nav">
+<a class="nav hierarchy" href="../class_list.html">Classes</a>
+<a class="nav hierarchy" href="../cluster_list.html">Clusters</a>
+<a class="nav hierarchy" href="../cluster_hierarchy.html">Cluster hierarchy</a>
+<span class="nav class selected">Chart</span>
+<a class="nav class" href="simple_smtp_links.html">Relations</a>
+<a class="nav class" href="simple_smtp_short.html">Contracts</a>
+<span class="nav class goto">Go to: <input name="c" value="simple_smtp"></span>
+</div></form><pre></pre>
+<p style="text-align:center;">Generated by <a href="http://www.eiffel.com">ISE EiffelStudio</a></p>
+</body>
+</html>
