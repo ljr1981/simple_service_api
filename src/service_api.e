@@ -231,6 +231,82 @@ feature -- PDF Generation
 			create Result.make
 		end
 
+feature -- AI Clients
+
+	new_claude_client,
+	new_claude,
+	claude_client: CLAUDE_CLIENT
+			-- Create new Claude AI client (uses ANTHROPIC_API_KEY env var).
+		do
+			create Result.make
+		end
+
+	new_claude_client_with_key,
+	claude_with_key (a_api_key: STRING): CLAUDE_CLIENT
+			-- Create new Claude AI client with explicit API key.
+		require
+			key_not_empty: not a_api_key.is_empty
+		do
+			create Result.make_with_api_key (a_api_key)
+		end
+
+	new_ollama_client,
+	new_ollama,
+	ollama_client: OLLAMA_CLIENT
+			-- Create new Ollama client (localhost:11434).
+		do
+			create Result.make
+		end
+
+	new_ollama_client_with_url,
+	ollama_with_url (a_base_url: STRING): OLLAMA_CLIENT
+			-- Create new Ollama client with custom base URL.
+		require
+			url_not_empty: not a_base_url.is_empty
+		do
+			create Result.make_with_base_url (a_base_url)
+		end
+
+	ask_claude,
+	claude_ask (a_prompt: STRING): STRING
+			-- Quick ask Claude a question, return response text.
+		require
+			prompt_not_empty: not a_prompt.is_empty
+		local
+			l_response: AI_RESPONSE
+		do
+			l_response := claude.ask (a_prompt)
+			if l_response.is_error then
+				if attached l_response.error_message as l_err then
+					Result := "Error: " + l_err.to_string_8
+				else
+					Result := "Error: Unknown error"
+				end
+			else
+				Result := l_response.text.to_string_8
+			end
+		end
+
+	ask_ollama,
+	ollama_ask (a_prompt: STRING): STRING
+			-- Quick ask Ollama a question, return response text.
+		require
+			prompt_not_empty: not a_prompt.is_empty
+		local
+			l_response: AI_RESPONSE
+		do
+			l_response := ollama.ask (a_prompt)
+			if l_response.is_error then
+				if attached l_response.error_message as l_err then
+					Result := "Error: " + l_err.to_string_8
+				else
+					Result := "Error: Unknown error"
+				end
+			else
+				Result := l_response.text.to_string_8
+			end
+		end
+
 feature -- Caching
 
 	new_cache (a_max_size: INTEGER): SIMPLE_CACHE [ANY]
@@ -340,6 +416,18 @@ feature -- Direct Access (Singleton Instances)
 
 	pdf_reader: SIMPLE_PDF_READER
 			-- Direct access to PDF text extractor.
+		once
+			create Result.make
+		end
+
+	claude: CLAUDE_CLIENT
+			-- Direct access to Claude client (uses ANTHROPIC_API_KEY env var).
+		once
+			create Result.make
+		end
+
+	ollama: OLLAMA_CLIENT
+			-- Direct access to Ollama client (localhost:11434).
 		once
 			create Result.make
 		end
