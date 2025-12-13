@@ -389,6 +389,44 @@ feature -- Caching
 			initially_empty: Result.is_empty
 		end
 
+feature -- Graph Data Structures
+
+	new_graph: SIMPLE_GRAPH [ANY]
+			-- Create new undirected graph.
+		do
+			create Result.make
+		ensure
+			not_directed: not Result.is_directed
+			empty: Result.is_empty
+		end
+
+	new_directed_graph: SIMPLE_GRAPH [ANY]
+			-- Create new directed graph.
+		do
+			create Result.make_directed
+		ensure
+			directed: Result.is_directed
+			empty: Result.is_empty
+		end
+
+	new_string_graph: SIMPLE_GRAPH [STRING]
+			-- Create new undirected graph with string nodes.
+		do
+			create Result.make
+		end
+
+	new_directed_string_graph: SIMPLE_GRAPH [STRING]
+			-- Create new directed graph with string nodes.
+		do
+			create Result.make_directed
+		end
+
+	new_integer_graph: SIMPLE_GRAPH [INTEGER]
+			-- Create new undirected graph with integer nodes.
+		do
+			create Result.make
+		end
+
 feature -- Redis Caching
 
 	new_redis (a_host: STRING; a_port: INTEGER): SIMPLE_REDIS

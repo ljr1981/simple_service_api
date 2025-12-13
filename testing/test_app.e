@@ -90,6 +90,15 @@ feature {NONE} -- Initialization
 			run_test (agent tests.test_bulkhead_acquire_release, "test_bulkhead_acquire_release")
 			run_test (agent tests.test_resilience_singletons, "test_resilience_singletons")
 
+			-- Graph Tests
+			io.put_string ("%NGraph Tests%N")
+			io.put_string ("-----------%N")
+			run_test (agent tests.test_new_graph, "test_new_graph")
+			run_test (agent tests.test_new_directed_graph, "test_new_directed_graph")
+			run_test (agent tests.test_new_string_graph, "test_new_string_graph")
+			run_test (agent tests.test_graph_dijkstra, "test_graph_dijkstra")
+			run_test (agent tests.test_graph_bfs_dfs, "test_graph_bfs_dfs")
+
 			-- Redis Tests
 			io.put_string ("%NRedis Tests%N")
 			io.put_string ("-----------%N")

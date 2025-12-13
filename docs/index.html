@@ -85,6 +85,10 @@
                     <p>Distributed caching via Redis</p>
                 </div>
                 <div class="feature-card">
+                    <h4>Graphs</h4>
+                    <p>BFS, DFS, Dijkstra, topological sort</p>
+                </div>
+                <div class="feature-card">
                     <h4>Base64/Hash</h4>
                     <p>Encoding, MD5, SHA (inherited)</p>
                 </div>
@@ -128,6 +132,13 @@
         <span class="comment">-- make external call</span>
         cb.<span class="feature">record_success</span>
     <span class="keyword">end</span>
+
+    <span class="comment">-- Graphs</span>
+    g := service.<span class="feature">new_string_graph</span>
+    a := g.<span class="feature">add_node</span> (<span class="string">"Paris"</span>)
+    b := g.<span class="feature">add_node</span> (<span class="string">"London"</span>)
+    g.<span class="feature">add_edge</span> (a, b)
+    path := g.<span class="feature">dijkstra</span> (a, b)
 
     <span class="comment">-- Foundation (inherited)</span>
     hash := service.<span class="feature">sha256</span> (<span class="string">"password"</span>)
@@ -208,6 +219,15 @@
             </div>
 
             <div class="api-section">
+                <h3>Graph Data Structures</h3>
+                <div class="signature">new_graph: SIMPLE_GRAPH [ANY]</div>
+                <div class="signature">new_directed_graph: SIMPLE_GRAPH [ANY]</div>
+                <div class="signature">new_string_graph: SIMPLE_GRAPH [STRING]</div>
+                <div class="signature">new_directed_string_graph: SIMPLE_GRAPH [STRING]</div>
+                <div class="signature">new_integer_graph: SIMPLE_GRAPH [INTEGER]</div>
+            </div>
+
+            <div class="api-section">
                 <h3>Foundation (inherited)</h3>
                 <div class="signature">base64_encode (data): STRING</div>
                 <div class="signature">base64_decode (data): STRING</div>
@@ -237,6 +257,7 @@
                     <tr><td><a href="https://simple-eiffel.github.io/simple_websocket/">simple_websocket</a></td><td>WebSocket protocol</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_web/">simple_web</a></td><td>HTTP client/server, resilience</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_cache/">simple_cache</a></td><td>Caching with Redis support</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_graph/">simple_graph</a></td><td>Graph data structures &amp; algorithms</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_foundation_api/">simple_foundation_api</a></td><td>Core utilities (inherited)</td></tr>
                 </tbody>
             </table>

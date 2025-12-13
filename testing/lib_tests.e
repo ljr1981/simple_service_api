@@ -382,6 +382,89 @@ feature -- Test: Resilience
 			check resilience_policy_singleton: api.resilience_policy /= Void end
 		end
 
+feature -- Test: Graph
+
+	test_new_graph
+			-- Test creating undirected graph.
+		local
+			api: SERVICE_API
+			g: SIMPLE_GRAPH [ANY]
+		do
+			create api.make
+			g := api.new_graph
+			check graph_created: g /= Void end
+			check not_directed: not g.is_directed end
+			check empty: g.is_empty end
+		end
+
+	test_new_directed_graph
+			-- Test creating directed graph.
+		local
+			api: SERVICE_API
+			g: SIMPLE_GRAPH [ANY]
+		do
+			create api.make
+			g := api.new_directed_graph
+			check graph_created: g /= Void end
+			check directed: g.is_directed end
+		end
+
+	test_new_string_graph
+			-- Test creating string graph.
+		local
+			api: SERVICE_API
+			g: SIMPLE_GRAPH [STRING]
+			a, b: INTEGER
+		do
+			create api.make
+			g := api.new_string_graph
+			a := g.add_node ("A")
+			b := g.add_node ("B")
+			g.add_edge (a, b)
+			check has_edge: g.has_edge (a, b) end
+		end
+
+	test_graph_dijkstra
+			-- Test shortest path with graph.
+		local
+			api: SERVICE_API
+			g: SIMPLE_GRAPH [STRING]
+			a, b, c: INTEGER
+			path: ARRAYED_LIST [INTEGER]
+		do
+			create api.make
+			g := api.new_string_graph
+			a := g.add_node ("A")
+			b := g.add_node ("B")
+			c := g.add_node ("C")
+			g.add_edge (a, b)
+			g.add_edge (b, c)
+			path := g.dijkstra (a, c)
+			check path_found: not path.is_empty end
+			check path_correct: path.count = 3 end
+		end
+
+	test_graph_bfs_dfs
+			-- Test graph traversals.
+		local
+			api: SERVICE_API
+			g: SIMPLE_GRAPH [STRING]
+			a, b, c: INTEGER
+			bfs_result, dfs_result: ARRAYED_LIST [INTEGER]
+		do
+			create api.make
+			g := api.new_string_graph
+			a := g.add_node ("A")
+			b := g.add_node ("B")
+			c := g.add_node ("C")
+			g.add_edge (a, b)
+			g.add_edge (a, c)
+			bfs_result := g.bfs (a)
+			dfs_result := g.dfs (a)
+			check bfs_visits_all: bfs_result.count = 3 end
+			check dfs_visits_all: dfs_result.count = 3 end
+		end
+
 feature -- Test: Redis
 
 	test_new_redis

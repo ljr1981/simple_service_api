@@ -29,6 +29,7 @@
 		<library name="simple_rate_limiter" location="$SIMPLE_RATE_LIMITER\simple_rate_limiter.ecf"/>
 		<library name="simple_template" location="$SIMPLE_TEMPLATE\simple_template.ecf"/>
 		<library name="simple_cache" location="$SIMPLE_CACHE\simple_cache.ecf"/>
+		<library name="simple_graph" location="$SIMPLE_GRAPH\simple_graph.ecf"/>
 		<library name="simple_websocket" location="$SIMPLE_WEBSOCKET\simple_websocket.ecf"/>
 		<library name="simple_web" location="$SIMPLE_WEB\simple_web.ecf"/>
 		<library name="simple_pdf" location="$SIMPLE_PDF\simple_pdf.ecf"/>
