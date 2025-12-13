@@ -3,7 +3,7 @@ note
 	author: "Larry Rix"
 
 class
-	SERVICE_TEST_SET
+	LIB_TESTS
 
 feature -- Test: JWT
 

@@ -3,7 +3,7 @@ note
 	author: "Larry Rix"
 
 class
-	SERVICE_TEST_APP
+	TEST_APP
 
 create
 	make
@@ -13,7 +13,7 @@ feature {NONE} -- Initialization
 	make
 			-- Run tests.
 		local
-			tests: SERVICE_TEST_SET
+			tests: LIB_TESTS
 		do
 			create tests
 			io.put_string ("simple_service_api test runner%N")
