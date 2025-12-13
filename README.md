@@ -21,6 +21,7 @@ Unified service layer facade for Eiffel web applications. Bundles authentication
 - **Rate Limiting** - Protect endpoints from abuse
 - **Templates** - Simple template rendering with variable substitution
 - **WebSocket** - RFC 6455 WebSocket frame encoding/decoding
+- **Resilience** - Circuit breaker, bulkhead, retry with backoff, timeout, fallback patterns
 - **Foundation** - Access via `api.foundation.*` for Base64, SHA, UUID, JSON, etc.
 
 ## Dependencies
@@ -36,6 +37,7 @@ This library bundles the following service libraries:
 | [simple_rate_limiter](https://github.com/simple-eiffel/simple_rate_limiter) | Rate limiting | `$SIMPLE_RATE_LIMITER` |
 | [simple_template](https://github.com/simple-eiffel/simple_template) | Template rendering | `$SIMPLE_TEMPLATE` |
 | [simple_websocket](https://github.com/simple-eiffel/simple_websocket) | WebSocket protocol | `$SIMPLE_WEBSOCKET` |
+| [simple_web](https://github.com/simple-eiffel/simple_web) | HTTP client/server, resilience | `$SIMPLE_WEB` |
 | [simple_foundation_api](https://github.com/simple-eiffel/simple_foundation_api) | Core utilities (composed) | `$SIMPLE_FOUNDATION_API` |
 
 ## Installation
@@ -96,6 +98,22 @@ do
     frame := api.new_ws_text_frame ("Hello", True)
     bytes := frame.to_bytes
 
+    -- Service-level: Resilience
+    cb := api.new_circuit_breaker (5, 30)  -- 5 failures, 30s cooldown
+    if cb.allow_request then
+        -- Make external call
+        cb.record_success  -- or record_failure
+    end
+
+    bh := api.new_bulkhead (100)  -- Max 100 concurrent
+    if bh.acquire then
+        -- Do work
+        bh.release
+    end
+
+    policy := api.new_resilience_policy
+    policy.with_retry (3).with_circuit_breaker (5, 30).with_timeout (10)
+
     -- Foundation layer (via composition)
     encoded := api.foundation.base64_encode ("data")
     hash := api.foundation.sha256 ("password")
@@ -139,11 +157,21 @@ end
 - `new_ws_ping_frame`, `new_ws_pong_frame` - Create control frames
 - `new_ws_text_message`, `new_ws_binary_message` - Create messages
 
+#### Resilience
+- `new_circuit_breaker (threshold, cooldown)` - Create circuit breaker
+- `new_bulkhead (max_concurrent)` - Create concurrency limiter
+- `new_resilience_policy` - Create policy builder (fluent API)
+- `new_resilience_middleware` - Create server middleware
+- `new_resilience_middleware_with_policy (policy)` - Create middleware with policy
+
 #### Direct Access (Singletons)
 - `jwt` - SIMPLE_JWT instance
 - `smtp` - SIMPLE_SMTP instance
 - `cors` - SIMPLE_CORS instance
 - `template` - SIMPLE_TEMPLATE instance
+- `circuit_breaker` - SIMPLE_CIRCUIT_BREAKER instance (5 failures, 30s cooldown)
+- `bulkhead` - SIMPLE_BULKHEAD instance (100 concurrent max)
+- `resilience_policy` - SIMPLE_RESILIENCE_POLICY instance
 
 ### Layer Access
 

@@ -73,6 +73,10 @@
                     <p>Handshake, frames, protocol support</p>
                 </div>
                 <div class="feature-card">
+                    <h4>Resilience</h4>
+                    <p>Circuit breaker, bulkhead, retry, timeout</p>
+                </div>
+                <div class="feature-card">
                     <h4>Base64/Hash</h4>
                     <p>Encoding, MD5, SHA (inherited)</p>
                 </div>
@@ -109,6 +113,13 @@
 
     <span class="comment">-- Rate Limiting</span>
     limiter := service.<span class="feature">new_rate_limiter</span> (100, 60)
+
+    <span class="comment">-- Resilience</span>
+    cb := service.<span class="feature">new_circuit_breaker</span> (5, 30)
+    <span class="keyword">if</span> cb.<span class="feature">allow_request</span> <span class="keyword">then</span>
+        <span class="comment">-- make external call</span>
+        cb.<span class="feature">record_success</span>
+    <span class="keyword">end</span>
 
     <span class="comment">-- Foundation (inherited)</span>
     hash := service.<span class="feature">sha256</span> (<span class="string">"password"</span>)
@@ -164,6 +175,15 @@
             </div>
 
             <div class="api-section">
+                <h3>Resilience</h3>
+                <div class="signature">new_circuit_breaker (threshold, cooldown): SIMPLE_CIRCUIT_BREAKER</div>
+                <div class="signature">new_bulkhead (max_concurrent): SIMPLE_BULKHEAD</div>
+                <div class="signature">new_resilience_policy: SIMPLE_RESILIENCE_POLICY</div>
+                <div class="signature">new_resilience_middleware: SIMPLE_WEB_RESILIENCE_MIDDLEWARE</div>
+                <div class="signature">new_resilience_middleware_with_policy (policy): SIMPLE_WEB_RESILIENCE_MIDDLEWARE</div>
+            </div>
+
+            <div class="api-section">
                 <h3>Foundation (inherited)</h3>
                 <div class="signature">base64_encode (data): STRING</div>
                 <div class="signature">base64_decode (data): STRING</div>
@@ -191,6 +211,7 @@
                     <tr><td><a href="https://simple-eiffel.github.io/simple_rate_limiter/">simple_rate_limiter</a></td><td>Rate limiting</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_template/">simple_template</a></td><td>Template rendering</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_websocket/">simple_websocket</a></td><td>WebSocket protocol</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_web/">simple_web</a></td><td>HTTP client/server, resilience</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_foundation_api/">simple_foundation_api</a></td><td>Core utilities (inherited)</td></tr>
                 </tbody>
             </table>

@@ -30,6 +30,7 @@
 		<library name="simple_template" location="$SIMPLE_TEMPLATE\simple_template.ecf"/>
 		<library name="simple_cache" location="$SIMPLE_CACHE\simple_cache.ecf"/>
 		<library name="simple_websocket" location="$SIMPLE_WEBSOCKET\simple_websocket.ecf"/>
+		<library name="simple_web" location="$SIMPLE_WEB\simple_web.ecf"/>
 		<library name="simple_pdf" location="$SIMPLE_PDF\simple_pdf.ecf"/>
 		<library name="simple_ai_client" location="$SIMPLE_AI_CLIENT\simple_ai_client.ecf"/>
 		<cluster name="src" location=".\src\" recursive="true"/>

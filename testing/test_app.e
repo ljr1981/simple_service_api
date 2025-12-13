@@ -78,6 +78,18 @@ feature {NONE} -- Initialization
 			io.put_string ("----------------------------%N")
 			run_test (agent tests.test_foundation_features_available, "test_foundation_features_available")
 
+			-- Resilience Tests
+			io.put_string ("%NResilience Tests%N")
+			io.put_string ("----------------%N")
+			run_test (agent tests.test_new_circuit_breaker, "test_new_circuit_breaker")
+			run_test (agent tests.test_new_bulkhead, "test_new_bulkhead")
+			run_test (agent tests.test_new_resilience_policy, "test_new_resilience_policy")
+			run_test (agent tests.test_new_resilience_middleware, "test_new_resilience_middleware")
+			run_test (agent tests.test_new_resilience_middleware_with_policy, "test_new_resilience_middleware_with_policy")
+			run_test (agent tests.test_circuit_breaker_state_transitions, "test_circuit_breaker_state_transitions")
+			run_test (agent tests.test_bulkhead_acquire_release, "test_bulkhead_acquire_release")
+			run_test (agent tests.test_resilience_singletons, "test_resilience_singletons")
+
 			io.put_string ("%N====================================%N")
 			io.put_string ("Results: " + passed.out + " passed, " + failed.out + " failed%N")
 

@@ -103,6 +103,51 @@ feature -- Rate Limiting
 			create Result.make_with_limit (a_max_requests, a_window_seconds)
 		end
 
+feature -- Resilience
+
+	new_circuit_breaker (a_failure_threshold: INTEGER; a_cooldown_seconds: INTEGER): SIMPLE_CIRCUIT_BREAKER
+			-- Create circuit breaker: opens after `a_failure_threshold' failures,
+			-- waits `a_cooldown_seconds' before half-open.
+		require
+			positive_threshold: a_failure_threshold > 0
+			positive_cooldown: a_cooldown_seconds > 0
+		do
+			create Result.make (a_failure_threshold, a_cooldown_seconds)
+		ensure
+			is_closed: Result.is_closed
+		end
+
+	new_bulkhead (a_max_concurrent: INTEGER): SIMPLE_BULKHEAD
+			-- Create bulkhead limiting to `a_max_concurrent' executions.
+		require
+			positive_limit: a_max_concurrent > 0
+		do
+			create Result.make (a_max_concurrent)
+		ensure
+			not_full: not Result.is_full
+		end
+
+	new_resilience_policy: SIMPLE_RESILIENCE_POLICY
+			-- Create resilience policy builder.
+			-- Use fluent API: policy.with_retry(3).with_circuit_breaker(5, 30).with_timeout(10)
+		do
+			create Result.make
+		end
+
+	new_resilience_middleware: SIMPLE_WEB_RESILIENCE_MIDDLEWARE
+			-- Create resilience middleware for server pipeline.
+		do
+			create Result.make_default
+		end
+
+	new_resilience_middleware_with_policy (a_policy: SIMPLE_RESILIENCE_POLICY): SIMPLE_WEB_RESILIENCE_MIDDLEWARE
+			-- Create resilience middleware with custom policy.
+		require
+			policy_not_void: a_policy /= Void
+		do
+			create Result.make_with_policy (a_policy)
+		end
+
 feature -- Templates
 
 	new_template: SIMPLE_TEMPLATE
@@ -428,6 +473,27 @@ feature -- Direct Access (Singleton Instances)
 
 	ollama: OLLAMA_CLIENT
 			-- Direct access to Ollama client (localhost:11434).
+		once
+			create Result.make
+		end
+
+	circuit_breaker: SIMPLE_CIRCUIT_BREAKER
+			-- Direct access to shared circuit breaker (5 failures, 30s cooldown).
+			-- Use `new_circuit_breaker' for custom configuration.
+		once
+			create Result.make (5, 30)
+		end
+
+	bulkhead: SIMPLE_BULKHEAD
+			-- Direct access to shared bulkhead (100 concurrent max).
+			-- Use `new_bulkhead' for custom configuration.
+		once
+			create Result.make (100)
+		end
+
+	resilience_policy: SIMPLE_RESILIENCE_POLICY
+			-- Direct access to shared resilience policy (default settings).
+			-- Use `new_resilience_policy' for custom configuration.
 		once
 			create Result.make
 		end

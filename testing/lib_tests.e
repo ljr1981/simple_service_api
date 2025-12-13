@@ -261,4 +261,125 @@ feature -- Test: Foundation Composition
 			check sha256_works: not api.foundation.sha256 ("test").is_empty end
 		end
 
+feature -- Test: Resilience
+
+	test_new_circuit_breaker
+			-- Test creating circuit breaker.
+		local
+			api: SERVICE_API
+			cb: SIMPLE_CIRCUIT_BREAKER
+		do
+			create api.make
+			cb := api.new_circuit_breaker (5, 30)
+			check circuit_breaker_created: cb /= Void end
+			check initially_closed: cb.is_closed end
+		end
+
+	test_new_bulkhead
+			-- Test creating bulkhead.
+		local
+			api: SERVICE_API
+			bh: SIMPLE_BULKHEAD
+		do
+			create api.make
+			bh := api.new_bulkhead (50)
+			check bulkhead_created: bh /= Void end
+			check not_full: not bh.is_full end
+		end
+
+	test_new_resilience_policy
+			-- Test creating resilience policy builder.
+		local
+			api: SERVICE_API
+			policy: SIMPLE_RESILIENCE_POLICY
+			l_dummy: SIMPLE_RESILIENCE_POLICY
+		do
+			create api.make
+			policy := api.new_resilience_policy
+			check policy_created: policy /= Void end
+			-- Test fluent API
+			l_dummy := policy.with_retry (3)
+			l_dummy := policy.with_circuit_breaker (5, 30)
+			l_dummy := policy.with_timeout (10)
+			l_dummy := policy.with_bulkhead (100)
+			check has_retry: policy.has_retry end
+			check has_circuit_breaker: policy.has_circuit_breaker end
+			check has_timeout: policy.has_timeout end
+			check has_bulkhead: policy.has_bulkhead end
+		end
+
+	test_new_resilience_middleware
+			-- Test creating resilience middleware.
+		local
+			api: SERVICE_API
+			mw: SIMPLE_WEB_RESILIENCE_MIDDLEWARE
+		do
+			create api.make
+			mw := api.new_resilience_middleware
+			check middleware_created: mw /= Void end
+		end
+
+	test_new_resilience_middleware_with_policy
+			-- Test creating resilience middleware with policy.
+		local
+			api: SERVICE_API
+			policy: SIMPLE_RESILIENCE_POLICY
+			mw: SIMPLE_WEB_RESILIENCE_MIDDLEWARE
+		do
+			create api.make
+			policy := api.new_resilience_policy
+			mw := api.new_resilience_middleware_with_policy (policy)
+			check middleware_created: mw /= Void end
+		end
+
+	test_circuit_breaker_state_transitions
+			-- Test circuit breaker state machine.
+		local
+			api: SERVICE_API
+			cb: SIMPLE_CIRCUIT_BREAKER
+			i: INTEGER
+		do
+			create api.make
+			cb := api.new_circuit_breaker (3, 1)  -- 3 failures, 1 second cooldown
+			check initially_closed: cb.is_closed end
+			-- Record failures to open circuit
+			from i := 1 until i > 3 loop
+				cb.record_failure
+				i := i + 1
+			end
+			check now_open: cb.is_open end
+			check request_not_allowed: not cb.allow_request end
+		end
+
+	test_bulkhead_acquire_release
+			-- Test bulkhead acquire/release.
+		local
+			api: SERVICE_API
+			bh: SIMPLE_BULKHEAD
+			acquired: BOOLEAN
+		do
+			create api.make
+			bh := api.new_bulkhead (2)  -- Max 2 concurrent
+			acquired := bh.acquire
+			check first_acquired: acquired end
+			acquired := bh.acquire
+			check second_acquired: acquired end
+			acquired := bh.acquire
+			check third_rejected: not acquired end
+			bh.release
+			acquired := bh.acquire
+			check after_release_acquired: acquired end
+		end
+
+	test_resilience_singletons
+			-- Test resilience singleton instances.
+		local
+			api: SERVICE_API
+		do
+			create api.make
+			check circuit_breaker_singleton: api.circuit_breaker /= Void end
+			check bulkhead_singleton: api.bulkhead /= Void end
+			check resilience_policy_singleton: api.resilience_policy /= Void end
+		end
+
 end
