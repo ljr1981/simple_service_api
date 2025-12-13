@@ -382,4 +382,66 @@ feature -- Test: Resilience
 			check resilience_policy_singleton: api.resilience_policy /= Void end
 		end
 
+feature -- Test: Redis
+
+	test_new_redis
+			-- Test creating Redis client.
+		local
+			api: SERVICE_API
+			redis: SIMPLE_REDIS
+		do
+			create api.make
+			redis := api.new_redis ("localhost", 6379)
+			check redis_created: redis /= Void end
+			check host_set: redis.host.same_string ("localhost") end
+			check port_set: redis.port = 6379 end
+		end
+
+	test_new_redis_with_auth
+			-- Test creating Redis client with authentication.
+		local
+			api: SERVICE_API
+			redis: SIMPLE_REDIS
+		do
+			create api.make
+			redis := api.new_redis_with_auth ("localhost", 6379, "secret")
+			check redis_created: redis /= Void end
+			check password_set: attached redis.password end
+		end
+
+	test_new_redis_cache
+			-- Test creating Redis cache.
+		local
+			api: SERVICE_API
+			cache: SIMPLE_REDIS_CACHE
+		do
+			create api.make
+			cache := api.new_redis_cache ("localhost", 6379, 1000)
+			check cache_created: cache /= Void end
+			check max_size_set: cache.max_size = 1000 end
+		end
+
+	test_new_redis_cache_with_ttl
+			-- Test creating Redis cache with TTL.
+		local
+			api: SERVICE_API
+			cache: SIMPLE_REDIS_CACHE
+		do
+			create api.make
+			cache := api.new_redis_cache_with_ttl ("localhost", 6379, 500, 3600)
+			check cache_created: cache /= Void end
+			check ttl_set: cache.default_ttl = 3600 end
+		end
+
+	test_new_redis_cache_with_auth
+			-- Test creating Redis cache with authentication.
+		local
+			api: SERVICE_API
+			cache: SIMPLE_REDIS_CACHE
+		do
+			create api.make
+			cache := api.new_redis_cache_with_auth ("localhost", 6379, 1000, "password")
+			check cache_created: cache /= Void end
+		end
+
 end

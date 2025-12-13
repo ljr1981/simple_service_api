@@ -90,6 +90,15 @@ feature {NONE} -- Initialization
 			run_test (agent tests.test_bulkhead_acquire_release, "test_bulkhead_acquire_release")
 			run_test (agent tests.test_resilience_singletons, "test_resilience_singletons")
 
+			-- Redis Tests
+			io.put_string ("%NRedis Tests%N")
+			io.put_string ("-----------%N")
+			run_test (agent tests.test_new_redis, "test_new_redis")
+			run_test (agent tests.test_new_redis_with_auth, "test_new_redis_with_auth")
+			run_test (agent tests.test_new_redis_cache, "test_new_redis_cache")
+			run_test (agent tests.test_new_redis_cache_with_ttl, "test_new_redis_cache_with_ttl")
+			run_test (agent tests.test_new_redis_cache_with_auth, "test_new_redis_cache_with_auth")
+
 			io.put_string ("%N====================================%N")
 			io.put_string ("Results: " + passed.out + " passed, " + failed.out + " failed%N")
 

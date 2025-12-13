@@ -22,6 +22,8 @@ Unified service layer facade for Eiffel web applications. Bundles authentication
 - **Templates** - Simple template rendering with variable substitution
 - **WebSocket** - RFC 6455 WebSocket frame encoding/decoding
 - **Resilience** - Circuit breaker, bulkhead, retry with backoff, timeout, fallback patterns
+- **Caching** - In-memory LRU cache with TTL support
+- **Redis** - Distributed caching via Redis client and Redis-backed cache
 - **Foundation** - Access via `api.foundation.*` for Base64, SHA, UUID, JSON, etc.
 
 ## Dependencies
@@ -38,6 +40,7 @@ This library bundles the following service libraries:
 | [simple_template](https://github.com/simple-eiffel/simple_template) | Template rendering | `$SIMPLE_TEMPLATE` |
 | [simple_websocket](https://github.com/simple-eiffel/simple_websocket) | WebSocket protocol | `$SIMPLE_WEBSOCKET` |
 | [simple_web](https://github.com/simple-eiffel/simple_web) | HTTP client/server, resilience | `$SIMPLE_WEB` |
+| [simple_cache](https://github.com/simple-eiffel/simple_cache) | Caching with Redis support | `$SIMPLE_CACHE` |
 | [simple_foundation_api](https://github.com/simple-eiffel/simple_foundation_api) | Core utilities (composed) | `$SIMPLE_FOUNDATION_API` |
 
 ## Installation
@@ -114,6 +117,21 @@ do
     policy := api.new_resilience_policy
     policy.with_retry (3).with_circuit_breaker (5, 30).with_timeout (10)
 
+    -- Service-level: Caching (in-memory)
+    cache := api.new_cache (100)  -- Max 100 entries
+    cache.put ("user:123", user_data)
+    if attached cache.get ("user:123") as data then
+        -- Process cached data
+    end
+
+    -- Service-level: Redis (distributed caching)
+    redis := api.new_redis ("localhost", 6379)
+    redis_cache := api.new_redis_cache ("localhost", 6379, 1000)
+    if redis_cache.connect then
+        redis_cache.put ("session:abc", session_json)
+        redis_cache.disconnect
+    end
+
     -- Foundation layer (via composition)
     encoded := api.foundation.base64_encode ("data")
     hash := api.foundation.sha256 ("password")
@@ -164,11 +182,24 @@ end
 - `new_resilience_middleware` - Create server middleware
 - `new_resilience_middleware_with_policy (policy)` - Create middleware with policy
 
+#### Caching
+- `new_cache (max_size)` - Create in-memory LRU cache
+- `new_cache_with_ttl (max_size, ttl_seconds)` - Create cache with TTL
+- `new_string_cache (max_size)` - Create string-value cache
+
+#### Redis
+- `new_redis (host, port)` - Create Redis client
+- `new_redis_with_auth (host, port, password)` - Create authenticated Redis client
+- `new_redis_cache (host, port, max_size)` - Create Redis-backed cache
+- `new_redis_cache_with_ttl (host, port, max_size, ttl)` - Create Redis cache with TTL
+- `new_redis_cache_with_auth (host, port, max_size, password)` - Create authenticated Redis cache
+
 #### Direct Access (Singletons)
 - `jwt` - SIMPLE_JWT instance
 - `smtp` - SIMPLE_SMTP instance
 - `cors` - SIMPLE_CORS instance
 - `template` - SIMPLE_TEMPLATE instance
+- `cache` - SIMPLE_CACHE instance (1000 entries)
 - `circuit_breaker` - SIMPLE_CIRCUIT_BREAKER instance (5 failures, 30s cooldown)
 - `bulkhead` - SIMPLE_BULKHEAD instance (100 concurrent max)
 - `resilience_policy` - SIMPLE_RESILIENCE_POLICY instance

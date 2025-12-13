@@ -77,6 +77,14 @@
                     <p>Circuit breaker, bulkhead, retry, timeout</p>
                 </div>
                 <div class="feature-card">
+                    <h4>Caching</h4>
+                    <p>In-memory LRU cache with TTL</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Redis</h4>
+                    <p>Distributed caching via Redis</p>
+                </div>
+                <div class="feature-card">
                     <h4>Base64/Hash</h4>
                     <p>Encoding, MD5, SHA (inherited)</p>
                 </div>
@@ -184,6 +192,22 @@
             </div>
 
             <div class="api-section">
+                <h3>Caching</h3>
+                <div class="signature">new_cache (max_size): SIMPLE_CACHE [ANY]</div>
+                <div class="signature">new_cache_with_ttl (max_size, ttl_seconds): SIMPLE_CACHE [ANY]</div>
+                <div class="signature">new_string_cache (max_size): SIMPLE_CACHE [STRING]</div>
+            </div>
+
+            <div class="api-section">
+                <h3>Redis</h3>
+                <div class="signature">new_redis (host, port): SIMPLE_REDIS</div>
+                <div class="signature">new_redis_with_auth (host, port, password): SIMPLE_REDIS</div>
+                <div class="signature">new_redis_cache (host, port, max_size): SIMPLE_REDIS_CACHE</div>
+                <div class="signature">new_redis_cache_with_ttl (host, port, max_size, ttl): SIMPLE_REDIS_CACHE</div>
+                <div class="signature">new_redis_cache_with_auth (host, port, max_size, password): SIMPLE_REDIS_CACHE</div>
+            </div>
+
+            <div class="api-section">
                 <h3>Foundation (inherited)</h3>
                 <div class="signature">base64_encode (data): STRING</div>
                 <div class="signature">base64_decode (data): STRING</div>
@@ -212,6 +236,7 @@
                     <tr><td><a href="https://simple-eiffel.github.io/simple_template/">simple_template</a></td><td>Template rendering</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_websocket/">simple_websocket</a></td><td>WebSocket protocol</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_web/">simple_web</a></td><td>HTTP client/server, resilience</td></tr>
+                    <tr><td><a href="https://simple-eiffel.github.io/simple_cache/">simple_cache</a></td><td>Caching with Redis support</td></tr>
                     <tr><td><a href="https://simple-eiffel.github.io/simple_foundation_api/">simple_foundation_api</a></td><td>Core utilities (inherited)</td></tr>
                 </tbody>
             </table>

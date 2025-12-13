@@ -1,0 +1,85 @@
+
+ec: system execution failed.
+Following is the set of recorded exceptions:
+
+******************************** Thread exception *****************************
+In thread           Root thread            0x0 (thread id)
+*******************************************************************************
+-------------------------------------------------------------------------------
+Class / Object      Routine                Nature of exception           Effect
+-------------------------------------------------------------------------------
+CONSOLE             put_new_line @1        FILE: unable to write CHARACTER value.:
+<00000222F11F72A8>                         Runtime I/O error.            Fail
+-------------------------------------------------------------------------------
+CONSOLE             put_new_line @1                                     
+<00000222F11F72A8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+TERM_WINDOW         put_new_line @1                                     
+<00000222F10C9258>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+TERM_WINDOW         process_new_line @1                                 
+<00000222F10C9258>  (From OUTPUT_WINDOW)   Routine failure.              Fail
+-------------------------------------------------------------------------------
+TERM_WINDOW         add_new_line @1                                     
+<00000222F10C9258>  (From TEXT_FORMATTER)  Routine failure.              Fail
+-------------------------------------------------------------------------------
+DEFAULT_ERROR_DISPLAYER
+                    trace_warnings @10     
+<00000222F1105D18>                         Routine failure.              Rescue
+-------------------------------------------------------------------------------
+ERROR_HANDLER       trace_warnings @3                                   
+<00000222F10C9288>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+WORKBENCH_I         recompile @35                                       
+<00000222F0FEFBC8>                         Routine failure.              Rescue
+-------------------------------------------------------------------------------
+E_PROJECT           melt @7                                             
+<00000222F0FF0188>                         Routine failure.              Rescue
+-------------------------------------------------------------------------------
+E_PROJECT           quick_melt @3                                       
+<00000222F0FF0188>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWB_QUICK_MELT      perform_compilation @1                              
+<00000222F10035E8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWB_QUICK_MELT      compile @3                                          
+<00000222F10035E8>  (From EWB_COMP)        Routine failure.              Fail
+-------------------------------------------------------------------------------
+EWB_QUICK_MELT      execute @6                                          
+<00000222F10035E8>  (From EWB_COMP)        Routine failure.              Fail
+-------------------------------------------------------------------------------
+ES_BATCH            execute @45                                         
+<00000222F10A51F8>  (From ES)              Routine failure.              Rescue
+-------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ entering level 1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------------------------------
+CONSOLE             put_string @4          FILE: unable to write STRING object.:
+<00000222F11F72A8>                         Runtime I/O error.            Fail
+-------------------------------------------------------------------------------
+CONSOLE             put_string @4                                       
+<00000222F11F72A8>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+CONSOLE             put_string_general @17                              
+<00000222F11F72A8>  (From PLAIN_TEXT_FILE) Routine failure.              Fail
+-------------------------------------------------------------------------------
+CONSOLE             put_string_32 @1                                    
+<00000222F11F72A8>  (From PLAIN_TEXT_FILE) Routine failure.              Fail
+-------------------------------------------------------------------------------
+ES_BATCH            localized_print_error @4
+<00000222F10A51F8>  (From LOCALIZED_PRINTER)
+                                           Routine failure.              Fail
+-------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ back to level 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------------------------------
+ES_BATCH            execute @69                                         
+<00000222F10A51F8>  (From ES)              Exception in rescue clause.   Fail
+-------------------------------------------------------------------------------
+ES_BATCH            make @13                                            
+<00000222F10A51F8>  (From ES)              Routine failure.              Fail
+-------------------------------------------------------------------------------
+EB_KERNEL           make @5                                             
+<00000222F0F4B218>                         Routine failure.              Fail
+-------------------------------------------------------------------------------
+EB_KERNEL           root's creation                                     
+<00000222F0F4B218>                         Routine failure.              Exit
+-------------------------------------------------------------------------------

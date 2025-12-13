@@ -389,6 +389,59 @@ feature -- Caching
 			initially_empty: Result.is_empty
 		end
 
+feature -- Redis Caching
+
+	new_redis (a_host: STRING; a_port: INTEGER): SIMPLE_REDIS
+			-- Create new Redis client.
+		require
+			host_not_empty: not a_host.is_empty
+			valid_port: a_port > 0 and a_port < 65536
+		do
+			create Result.make (a_host, a_port)
+		end
+
+	new_redis_with_auth (a_host: STRING; a_port: INTEGER; a_password: STRING): SIMPLE_REDIS
+			-- Create new Redis client with authentication.
+		require
+			host_not_empty: not a_host.is_empty
+			valid_port: a_port > 0 and a_port < 65536
+			password_not_empty: not a_password.is_empty
+		do
+			create Result.make_with_auth (a_host, a_port, a_password)
+		end
+
+	new_redis_cache (a_host: STRING; a_port: INTEGER; a_max_size: INTEGER): SIMPLE_REDIS_CACHE
+			-- Create new Redis-backed cache.
+		require
+			host_not_empty: not a_host.is_empty
+			valid_port: a_port > 0 and a_port < 65536
+			positive_size: a_max_size > 0
+		do
+			create Result.make (a_host, a_port, a_max_size)
+		end
+
+	new_redis_cache_with_ttl (a_host: STRING; a_port: INTEGER; a_max_size: INTEGER; a_ttl: INTEGER): SIMPLE_REDIS_CACHE
+			-- Create new Redis-backed cache with default TTL.
+		require
+			host_not_empty: not a_host.is_empty
+			valid_port: a_port > 0 and a_port < 65536
+			positive_size: a_max_size > 0
+			positive_ttl: a_ttl > 0
+		do
+			create Result.make_with_ttl (a_host, a_port, a_max_size, a_ttl)
+		end
+
+	new_redis_cache_with_auth (a_host: STRING; a_port: INTEGER; a_max_size: INTEGER; a_password: STRING): SIMPLE_REDIS_CACHE
+			-- Create new Redis-backed cache with authentication.
+		require
+			host_not_empty: not a_host.is_empty
+			valid_port: a_port > 0 and a_port < 65536
+			positive_size: a_max_size > 0
+			password_not_empty: not a_password.is_empty
+		do
+			create Result.make_with_auth (a_host, a_port, a_max_size, a_password)
+		end
+
 feature -- Layer Access
 
 	foundation: FOUNDATION_API
