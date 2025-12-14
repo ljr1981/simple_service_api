@@ -139,6 +139,20 @@ feature {NONE} -- Initialization
 			run_test (agent tests.test_mq_queue_enqueue_dequeue, "test_mq_queue_enqueue_dequeue")
 			run_test (agent tests.test_mq_singleton, "test_mq_singleton")
 
+			-- Mediator Tests
+			io.put_string ("%NMediator Tests%N")
+			io.put_string ("--------------%N")
+			run_test (agent tests.test_new_mediator, "test_new_mediator")
+			run_test (agent tests.test_new_event_bus, "test_new_event_bus")
+			run_test (agent tests.test_new_event, "test_new_event")
+			run_test (agent tests.test_event_with_data, "test_event_with_data")
+			run_test (agent tests.test_event_bus_subscribe_publish, "test_event_bus_subscribe_publish")
+			run_test (agent tests.test_event_bus_unsubscribe, "test_event_bus_unsubscribe")
+			run_test (agent tests.test_mediator_publish_event, "test_mediator_publish_event")
+			run_test (agent tests.test_command_result_success, "test_command_result_success")
+			run_test (agent tests.test_command_result_failure, "test_command_result_failure")
+			run_test (agent tests.test_mediator_singletons, "test_mediator_singletons")
+
 			io.put_string ("%N====================================%N")
 			io.put_string ("Results: " + passed.out + " passed, " + failed.out + " failed%N")
 

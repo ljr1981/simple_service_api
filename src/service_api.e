@@ -587,6 +587,59 @@ feature -- Redis Caching
 			create Result.make_with_auth (a_host, a_port, a_max_size, a_password)
 		end
 
+feature -- Mediator (Event Bus & CQRS)
+
+	new_mediator: SIMPLE_MEDIATOR
+			-- Create new mediator for decoupled component communication.
+			-- Use for event pub/sub, command sending, and query dispatching.
+		do
+			create Result.make
+		end
+
+	new_event_bus: SIMPLE_EVENT_BUS
+			-- Create new event bus for pub/sub communication.
+		do
+			create Result.make
+		end
+
+	new_event (a_name: STRING): SIMPLE_EVENT
+			-- Create new event with `a_name'.
+		require
+			name_not_empty: not a_name.is_empty
+		do
+			create Result.make (a_name)
+		ensure
+			name_set: Result.name.same_string (a_name)
+		end
+
+	new_event_with_data (a_name: STRING; a_data: HASH_TABLE [ANY, STRING]): SIMPLE_EVENT
+			-- Create new event with `a_name' and `a_data'.
+		require
+			name_not_empty: not a_name.is_empty
+		do
+			create Result.make_with_data (a_name, a_data)
+		ensure
+			name_set: Result.name.same_string (a_name)
+		end
+
+	new_command_result_success: SIMPLE_COMMAND_RESULT
+			-- Create successful command result.
+		do
+			create Result.make_success
+		ensure
+			is_success: Result.is_success
+		end
+
+	new_command_result_failure (a_error: STRING): SIMPLE_COMMAND_RESULT
+			-- Create failed command result with error message.
+		require
+			error_not_empty: not a_error.is_empty
+		do
+			create Result.make_failure (a_error)
+		ensure
+			is_failure: Result.is_failure
+		end
+
 feature -- Message Queue
 
 	new_mq: SIMPLE_MQ
@@ -813,6 +866,22 @@ feature -- Direct Access (Singleton Instances)
 			-- Direct access to message queue facade.
 			-- Provides factory methods for messages, queues, and topics.
 			-- Use `new_mq' for isolated instances.
+		once
+			create Result.make
+		end
+
+	mediator: SIMPLE_MEDIATOR
+			-- Direct access to shared mediator.
+			-- Use for centralized event bus and command dispatching.
+			-- Use `new_mediator' for isolated instances.
+		once
+			create Result.make
+		end
+
+	event_bus: SIMPLE_EVENT_BUS
+			-- Direct access to shared event bus.
+			-- Use for simple pub/sub without full mediator.
+			-- Use `new_event_bus' for isolated instances.
 		once
 			create Result.make
 		end

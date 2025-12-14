@@ -782,4 +782,156 @@ feature -- Test: Message Queue
 			check mq_singleton: api.mq /= Void end
 		end
 
+feature -- Test: Mediator
+
+	test_new_mediator
+			-- Test creating mediator.
+		local
+			api: SERVICE_API
+			med: SIMPLE_MEDIATOR
+		do
+			create api.make
+			med := api.new_mediator
+			check mediator_created: med /= Void end
+			check no_handlers: med.event_handler_count = 0 end
+		end
+
+	test_new_event_bus
+			-- Test creating event bus.
+		local
+			api: SERVICE_API
+			bus: SIMPLE_EVENT_BUS
+		do
+			create api.make
+			bus := api.new_event_bus
+			check bus_created: bus /= Void end
+			check no_handlers: bus.handler_count = 0 end
+		end
+
+	test_new_event
+			-- Test creating event.
+		local
+			api: SERVICE_API
+			evt: SIMPLE_EVENT
+		do
+			create api.make
+			evt := api.new_event ("user.created")
+			check event_created: evt /= Void end
+			check name_set: evt.name.same_string ("user.created") end
+			check timestamp_set: evt.timestamp /= Void end
+		end
+
+	test_event_with_data
+			-- Test event with data payload.
+		local
+			api: SERVICE_API
+			evt: SIMPLE_EVENT
+			data: HASH_TABLE [ANY, STRING]
+		do
+			create api.make
+			create data.make (2)
+			data.put ("John", "name")
+			data.put (42, "age")
+			evt := api.new_event_with_data ("user.updated", data)
+			check has_name: evt.has_key ("name") end
+			if attached evt.string_item ("name") as n then
+				check name_correct: n.same_string ("John") end
+			end
+		end
+
+	test_event_bus_subscribe_publish
+			-- Test event subscription and publishing.
+		local
+			api: SERVICE_API
+			bus: SIMPLE_EVENT_BUS
+			handler: TEST_EVENT_HANDLER
+			evt: SIMPLE_EVENT
+		do
+			create api.make
+			bus := api.new_event_bus
+			create handler.make ("test.event")
+			bus.subscribe (handler)
+			check subscribed: bus.is_subscribed (handler) end
+			check count_1: bus.handler_count = 1 end
+
+			evt := api.new_event ("test.event")
+			bus.publish (evt)
+			check received: handler.received_count = 1 end
+			check last_event_correct: attached handler.last_event as le and then le.name.same_string ("test.event") end
+		end
+
+	test_event_bus_unsubscribe
+			-- Test event unsubscription.
+		local
+			api: SERVICE_API
+			bus: SIMPLE_EVENT_BUS
+			handler: TEST_EVENT_HANDLER
+			evt: SIMPLE_EVENT
+		do
+			create api.make
+			bus := api.new_event_bus
+			create handler.make ("test.event")
+			bus.subscribe (handler)
+			bus.unsubscribe (handler)
+			check unsubscribed: not bus.is_subscribed (handler) end
+
+			evt := api.new_event ("test.event")
+			bus.publish (evt)
+			check not_received: handler.received_count = 0 end
+		end
+
+	test_mediator_publish_event
+			-- Test mediator event publishing.
+		local
+			api: SERVICE_API
+			med: SIMPLE_MEDIATOR
+			handler: TEST_EVENT_HANDLER
+		do
+			create api.make
+			med := api.new_mediator
+			create handler.make ("order.placed")
+			med.subscribe (handler)
+			med.publish_event ("order.placed")
+			check received: handler.received_count = 1 end
+		end
+
+	test_command_result_success
+			-- Test successful command result.
+		local
+			api: SERVICE_API
+			res: SIMPLE_COMMAND_RESULT
+		do
+			create api.make
+			res := api.new_command_result_success
+			check is_success: res.is_success end
+			check not_failure: not res.is_failure end
+			res.set_affected_count (5)
+			check affected_5: res.affected_count = 5 end
+		end
+
+	test_command_result_failure
+			-- Test failed command result.
+		local
+			api: SERVICE_API
+			res: SIMPLE_COMMAND_RESULT
+		do
+			create api.make
+			res := api.new_command_result_failure ("Validation failed")
+			check is_failure: res.is_failure end
+			check has_error: not res.errors.is_empty end
+			if attached res.first_error as err then
+				check error_message: err.same_string ("Validation failed") end
+			end
+		end
+
+	test_mediator_singletons
+			-- Test mediator singleton access.
+		local
+			api: SERVICE_API
+		do
+			create api.make
+			check mediator_singleton: api.mediator /= Void end
+			check event_bus_singleton: api.event_bus /= Void end
+		end
+
 end
