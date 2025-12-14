@@ -587,6 +587,106 @@ feature -- Redis Caching
 			create Result.make_with_auth (a_host, a_port, a_max_size, a_password)
 		end
 
+feature -- Message Queue
+
+	new_mq: SIMPLE_MQ
+			-- Create new message queue facade.
+			-- Provides factory methods for messages, queues, and topics.
+		do
+			create Result.make
+		end
+
+	new_mq_message (a_payload: STRING): SIMPLE_MQ_MESSAGE
+			-- Create new message with `a_payload'.
+		require
+			payload_not_void: a_payload /= Void
+		do
+			create Result.make (a_payload)
+		ensure
+			payload_set: Result.payload.same_string (a_payload)
+		end
+
+	new_mq_queue (a_name: STRING): SIMPLE_MQ_QUEUE
+			-- Create new in-memory FIFO queue.
+		require
+			name_not_empty: not a_name.is_empty
+		do
+			create Result.make (a_name)
+		ensure
+			name_set: Result.name.same_string (a_name)
+			empty: Result.is_empty
+		end
+
+	new_mq_priority_queue (a_name: STRING): SIMPLE_MQ_QUEUE
+			-- Create new in-memory priority queue (higher priority = dequeued first).
+		require
+			name_not_empty: not a_name.is_empty
+		do
+			create Result.make_priority (a_name)
+		ensure
+			name_set: Result.name.same_string (a_name)
+			is_priority: Result.is_priority_queue
+		end
+
+	new_mq_bounded_queue (a_name: STRING; a_max_size: INTEGER): SIMPLE_MQ_QUEUE
+			-- Create new in-memory queue with maximum capacity.
+		require
+			name_not_empty: not a_name.is_empty
+			positive_size: a_max_size > 0
+		do
+			create Result.make_with_capacity (a_name, a_max_size)
+		ensure
+			name_set: Result.name.same_string (a_name)
+			max_size_set: Result.max_size = a_max_size
+		end
+
+	new_mq_topic (a_name: STRING): SIMPLE_MQ_TOPIC
+			-- Create new pub/sub topic.
+		require
+			name_not_empty: not a_name.is_empty
+		do
+			create Result.make (a_name)
+		ensure
+			name_set: Result.name.same_string (a_name)
+			no_subscribers: Result.subscriber_count = 0
+		end
+
+	new_mq_topic_with_history (a_name: STRING; a_history_size: INTEGER): SIMPLE_MQ_TOPIC
+			-- Create new pub/sub topic with message history retention.
+		require
+			name_not_empty: not a_name.is_empty
+			positive_history: a_history_size > 0
+		do
+			create Result.make_with_history (a_name, a_history_size)
+		ensure
+			name_set: Result.name.same_string (a_name)
+			history_size_set: Result.history_size = a_history_size
+		end
+
+	new_redis_queue (a_name: STRING; a_redis: SIMPLE_REDIS): SIMPLE_MQ_REDIS_QUEUE
+			-- Create new Redis-backed queue.
+		require
+			name_not_empty: not a_name.is_empty
+			redis_attached: a_redis /= Void
+		do
+			create Result.make (a_name, a_redis)
+		ensure
+			name_set: Result.name.same_string (a_name)
+		end
+
+	new_redis_queue_blocking (a_name: STRING; a_redis: SIMPLE_REDIS; a_timeout: INTEGER): SIMPLE_MQ_REDIS_QUEUE
+			-- Create new Redis-backed queue with blocking dequeue timeout.
+		require
+			name_not_empty: not a_name.is_empty
+			redis_attached: a_redis /= Void
+			positive_timeout: a_timeout > 0
+		do
+			create Result.make_with_timeout (a_name, a_redis, a_timeout)
+		ensure
+			name_set: Result.name.same_string (a_name)
+			timeout_set: Result.blocking_timeout = a_timeout
+		end
+
 feature -- Layer Access
 
 	foundation: FOUNDATION_API
@@ -705,6 +805,14 @@ feature -- Direct Access (Singleton Instances)
 	statistics: SIMPLE_STATISTICS
 			-- Direct access to shared statistics calculator.
 			-- Use `new_statistics' for isolated instances.
+		once
+			create Result.make
+		end
+
+	mq: SIMPLE_MQ
+			-- Direct access to message queue facade.
+			-- Provides factory methods for messages, queues, and topics.
+			-- Use `new_mq' for isolated instances.
 		once
 			create Result.make
 		end

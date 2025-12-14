@@ -677,4 +677,109 @@ feature -- Test: ORM
 			check is_auto: field.is_auto_increment end
 		end
 
+feature -- Test: Message Queue
+
+	test_new_mq
+			-- Test creating message queue facade.
+		local
+			api: SERVICE_API
+			mq: SIMPLE_MQ
+		do
+			create api.make
+			mq := api.new_mq
+			check mq_created: mq /= Void end
+		end
+
+	test_new_mq_message
+			-- Test creating message.
+		local
+			api: SERVICE_API
+			msg: SIMPLE_MQ_MESSAGE
+		do
+			create api.make
+			msg := api.new_mq_message ("Hello, World!")
+			check msg_created: msg /= Void end
+			check payload_set: msg.payload.same_string ("Hello, World!") end
+			check id_set: not msg.id.is_empty end
+		end
+
+	test_new_mq_queue
+			-- Test creating queue.
+		local
+			api: SERVICE_API
+			queue: SIMPLE_MQ_QUEUE
+		do
+			create api.make
+			queue := api.new_mq_queue ("test-queue")
+			check queue_created: queue /= Void end
+			check name_set: queue.name.same_string ("test-queue") end
+			check is_empty: queue.is_empty end
+		end
+
+	test_new_mq_priority_queue
+			-- Test creating priority queue.
+		local
+			api: SERVICE_API
+			queue: SIMPLE_MQ_QUEUE
+		do
+			create api.make
+			queue := api.new_mq_priority_queue ("urgent")
+			check queue_created: queue /= Void end
+			check is_priority: queue.is_priority_queue end
+		end
+
+	test_new_mq_bounded_queue
+			-- Test creating bounded queue.
+		local
+			api: SERVICE_API
+			queue: SIMPLE_MQ_QUEUE
+		do
+			create api.make
+			queue := api.new_mq_bounded_queue ("bounded", 10)
+			check queue_created: queue /= Void end
+			check has_capacity: queue.max_size = 10 end
+		end
+
+	test_new_mq_topic
+			-- Test creating topic.
+		local
+			api: SERVICE_API
+			topic: SIMPLE_MQ_TOPIC
+		do
+			create api.make
+			topic := api.new_mq_topic ("events.user.created")
+			check topic_created: topic /= Void end
+			check name_set: topic.name.same_string ("events.user.created") end
+		end
+
+	test_mq_queue_enqueue_dequeue
+			-- Test enqueue and dequeue operations.
+		local
+			api: SERVICE_API
+			queue: SIMPLE_MQ_QUEUE
+			msg: SIMPLE_MQ_MESSAGE
+		do
+			create api.make
+			queue := api.new_mq_queue ("fifo")
+			msg := api.new_mq_message ("First")
+			queue.enqueue (msg)
+			check not_empty: not queue.is_empty end
+			check count_1: queue.count = 1 end
+			if attached queue.dequeue as received then
+				check payload_match: received.payload.same_string ("First") end
+			else
+				check dequeue_worked: False end
+			end
+			check empty_after: queue.is_empty end
+		end
+
+	test_mq_singleton
+			-- Test message queue singleton access.
+		local
+			api: SERVICE_API
+		do
+			create api.make
+			check mq_singleton: api.mq /= Void end
+		end
+
 end

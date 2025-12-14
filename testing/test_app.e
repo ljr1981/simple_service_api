@@ -127,6 +127,18 @@ feature {NONE} -- Initialization
 			run_test (agent tests.test_new_orm_field, "test_new_orm_field")
 			run_test (agent tests.test_new_orm_primary_key_field, "test_new_orm_primary_key_field")
 
+			-- Message Queue Tests
+			io.put_string ("%NMessage Queue Tests%N")
+			io.put_string ("-------------------%N")
+			run_test (agent tests.test_new_mq, "test_new_mq")
+			run_test (agent tests.test_new_mq_message, "test_new_mq_message")
+			run_test (agent tests.test_new_mq_queue, "test_new_mq_queue")
+			run_test (agent tests.test_new_mq_priority_queue, "test_new_mq_priority_queue")
+			run_test (agent tests.test_new_mq_bounded_queue, "test_new_mq_bounded_queue")
+			run_test (agent tests.test_new_mq_topic, "test_new_mq_topic")
+			run_test (agent tests.test_mq_queue_enqueue_dequeue, "test_mq_queue_enqueue_dequeue")
+			run_test (agent tests.test_mq_singleton, "test_mq_singleton")
+
 			io.put_string ("%N====================================%N")
 			io.put_string ("Results: " + passed.out + " passed, " + failed.out + " failed%N")
 
