@@ -465,6 +465,113 @@ feature -- Test: Graph
 			check dfs_visits_all: dfs_result.count = 3 end
 		end
 
+feature -- Test: Math
+
+	test_new_math
+			-- Test creating math facade.
+		local
+			api: SERVICE_API
+			m: SIMPLE_MATH
+		do
+			create api.make
+			m := api.new_math
+			check math_created: m /= Void end
+			check pi_defined: (m.pi - 3.14159).abs < 0.001 end
+		end
+
+	test_new_vector
+			-- Test creating vector.
+		local
+			api: SERVICE_API
+			v: SIMPLE_VECTOR
+		do
+			create api.make
+			v := api.new_vector (3)
+			check vector_created: v /= Void end
+			check dimension_3: v.dimension = 3 end
+			check is_zero: v.is_zero end
+		end
+
+	test_new_vector_3d
+			-- Test creating 3D vector.
+		local
+			api: SERVICE_API
+			v: SIMPLE_VECTOR
+		do
+			create api.make
+			v := api.new_vector_3d (1.0, 2.0, 3.0)
+			check vector_created: v /= Void end
+			check dimension_3: v.dimension = 3 end
+			check x_correct: v.item (1) = 1.0 end
+			check y_correct: v.item (2) = 2.0 end
+			check z_correct: v.item (3) = 3.0 end
+		end
+
+	test_new_matrix
+			-- Test creating matrix.
+		local
+			api: SERVICE_API
+			m: SIMPLE_MATRIX
+		do
+			create api.make
+			m := api.new_matrix (2, 3)
+			check matrix_created: m /= Void end
+			check rows_2: m.rows = 2 end
+			check cols_3: m.cols = 3 end
+		end
+
+	test_new_identity_matrix
+			-- Test creating identity matrix.
+		local
+			api: SERVICE_API
+			m: SIMPLE_MATRIX
+		do
+			create api.make
+			m := api.new_identity_matrix (3)
+			check matrix_created: m /= Void end
+			check is_square: m.is_square end
+			check is_identity: m.is_identity end
+		end
+
+	test_new_statistics
+			-- Test creating statistics.
+		local
+			api: SERVICE_API
+			s: SIMPLE_STATISTICS
+		do
+			create api.make
+			s := api.new_statistics_from_array (<<1.0, 2.0, 3.0, 4.0, 5.0>>)
+			check stats_created: s /= Void end
+			check count_5: s.count = 5 end
+			check mean_3: s.mean = 3.0 end
+		end
+
+	test_vector_operations
+			-- Test vector operations.
+		local
+			api: SERVICE_API
+			v1, v2: SIMPLE_VECTOR
+			dot: REAL_64
+		do
+			create api.make
+			v1 := api.new_vector_3d (1.0, 2.0, 3.0)
+			v2 := api.new_vector_3d (4.0, 5.0, 6.0)
+			dot := v1.dot (v2)
+			check dot_32: dot = 32.0 end  -- 1*4 + 2*5 + 3*6
+		end
+
+	test_matrix_operations
+			-- Test matrix operations.
+		local
+			api: SERVICE_API
+			m: SIMPLE_MATRIX
+		do
+			create api.make
+			m := api.new_identity_matrix (3)
+			check det_1: (m.determinant - 1.0).abs < 0.0001 end
+			check trace_3: m.trace = 3.0 end
+		end
+
 feature -- Test: Redis
 
 	test_new_redis

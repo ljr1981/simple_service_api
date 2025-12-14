@@ -99,6 +99,18 @@ feature {NONE} -- Initialization
 			run_test (agent tests.test_graph_dijkstra, "test_graph_dijkstra")
 			run_test (agent tests.test_graph_bfs_dfs, "test_graph_bfs_dfs")
 
+			-- Math Tests
+			io.put_string ("%NMath Tests%N")
+			io.put_string ("----------%N")
+			run_test (agent tests.test_new_math, "test_new_math")
+			run_test (agent tests.test_new_vector, "test_new_vector")
+			run_test (agent tests.test_new_vector_3d, "test_new_vector_3d")
+			run_test (agent tests.test_new_matrix, "test_new_matrix")
+			run_test (agent tests.test_new_identity_matrix, "test_new_identity_matrix")
+			run_test (agent tests.test_new_statistics, "test_new_statistics")
+			run_test (agent tests.test_vector_operations, "test_vector_operations")
+			run_test (agent tests.test_matrix_operations, "test_matrix_operations")
+
 			-- Redis Tests
 			io.put_string ("%NRedis Tests%N")
 			io.put_string ("-----------%N")

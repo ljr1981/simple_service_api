@@ -427,6 +427,78 @@ feature -- Graph Data Structures
 			create Result.make
 		end
 
+feature -- Math and Statistics
+
+	new_math: SIMPLE_MATH
+			-- Create new math utility facade.
+		do
+			create Result.make
+		end
+
+	new_vector (a_dimension: INTEGER): SIMPLE_VECTOR
+			-- Create new zero vector with `a_dimension' elements.
+		require
+			positive_dimension: a_dimension > 0
+		do
+			create Result.make (a_dimension)
+		ensure
+			dimension_set: Result.dimension = a_dimension
+		end
+
+	new_vector_2d (x, y: REAL_64): SIMPLE_VECTOR
+			-- Create new 2D vector.
+		do
+			create Result.make_from_array (<<x, y>>)
+		ensure
+			dimension_2: Result.dimension = 2
+		end
+
+	new_vector_3d (x, y, z: REAL_64): SIMPLE_VECTOR
+			-- Create new 3D vector.
+		do
+			create Result.make_from_array (<<x, y, z>>)
+		ensure
+			dimension_3: Result.dimension = 3
+		end
+
+	new_matrix (a_rows, a_cols: INTEGER): SIMPLE_MATRIX
+			-- Create new zero matrix with `a_rows' rows and `a_cols' columns.
+		require
+			positive_rows: a_rows > 0
+			positive_cols: a_cols > 0
+		do
+			create Result.make (a_rows, a_cols)
+		ensure
+			rows_set: Result.rows = a_rows
+			cols_set: Result.cols = a_cols
+		end
+
+	new_identity_matrix (a_size: INTEGER): SIMPLE_MATRIX
+			-- Create new identity matrix of size `a_size'.
+		require
+			positive_size: a_size > 0
+		do
+			create Result.make_identity (a_size)
+		ensure
+			square: Result.rows = Result.cols
+			size_set: Result.rows = a_size
+		end
+
+	new_statistics: SIMPLE_STATISTICS
+			-- Create new statistics calculator.
+		do
+			create Result.make
+		end
+
+	new_statistics_from_array (a_values: ARRAY [REAL_64]): SIMPLE_STATISTICS
+			-- Create statistics calculator populated with `a_values'.
+		do
+			create Result.make
+			Result.add_all (a_values)
+		ensure
+			count_set: Result.count = a_values.count
+		end
+
 feature -- Redis Caching
 
 	new_redis (a_host: STRING; a_port: INTEGER): SIMPLE_REDIS
@@ -585,6 +657,19 @@ feature -- Direct Access (Singleton Instances)
 	resilience_policy: SIMPLE_RESILIENCE_POLICY
 			-- Direct access to shared resilience policy (default settings).
 			-- Use `new_resilience_policy' for custom configuration.
+		once
+			create Result.make
+		end
+
+	math: SIMPLE_MATH
+			-- Direct access to math utility facade.
+		once
+			create Result.make
+		end
+
+	statistics: SIMPLE_STATISTICS
+			-- Direct access to shared statistics calculator.
+			-- Use `new_statistics' for isolated instances.
 		once
 			create Result.make
 		end
