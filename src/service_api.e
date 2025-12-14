@@ -78,6 +78,41 @@ feature -- SQL Database
 			create Result.make_memory
 		end
 
+feature -- ORM (Object-Relational Mapping)
+
+	new_orm (a_database: SIMPLE_SQL_DATABASE): SIMPLE_ORM
+			-- Create new ORM with database connection.
+			-- Provides CRUD operations for entities inheriting SIMPLE_ORM_ENTITY.
+		require
+			database_open: a_database.is_open
+		do
+			create Result.make (a_database)
+		ensure
+			database_set: Result.database = a_database
+		end
+
+	new_orm_field (a_name: STRING; a_type: INTEGER): SIMPLE_ORM_FIELD
+			-- Create new ORM field descriptor.
+			-- Types: type_string=1, type_integer=2, type_integer_64=3,
+			--        type_real=4, type_boolean=5, type_datetime=6, type_blob=7
+		require
+			name_not_empty: not a_name.is_empty
+			valid_type: a_type >= 1 and a_type <= 7
+		do
+			create Result.make (a_name, a_type)
+		end
+
+	new_orm_primary_key_field (a_name: STRING): SIMPLE_ORM_FIELD
+			-- Create new auto-incrementing integer primary key field.
+		require
+			name_not_empty: not a_name.is_empty
+		do
+			create Result.make_primary_key (a_name)
+		ensure
+			is_primary_key: Result.is_primary_key
+			is_auto_increment: Result.is_auto_increment
+		end
+
 feature -- CORS
 
 	new_cors: SIMPLE_CORS

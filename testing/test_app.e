@@ -120,6 +120,13 @@ feature {NONE} -- Initialization
 			run_test (agent tests.test_new_redis_cache_with_ttl, "test_new_redis_cache_with_ttl")
 			run_test (agent tests.test_new_redis_cache_with_auth, "test_new_redis_cache_with_auth")
 
+			-- ORM Tests
+			io.put_string ("%NORM Tests%N")
+			io.put_string ("---------%N")
+			run_test (agent tests.test_new_orm, "test_new_orm")
+			run_test (agent tests.test_new_orm_field, "test_new_orm_field")
+			run_test (agent tests.test_new_orm_primary_key_field, "test_new_orm_primary_key_field")
+
 			io.put_string ("%N====================================%N")
 			io.put_string ("Results: " + passed.out + " passed, " + failed.out + " failed%N")
 

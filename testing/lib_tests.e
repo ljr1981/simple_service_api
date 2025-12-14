@@ -634,4 +634,47 @@ feature -- Test: Redis
 			check cache_created: cache /= Void end
 		end
 
+feature -- Test: ORM
+
+	test_new_orm
+			-- Test creating ORM.
+		local
+			api: SERVICE_API
+			db: SIMPLE_SQL_DATABASE
+			orm: SIMPLE_ORM
+		do
+			create api.make
+			db := api.new_memory_database
+			orm := api.new_orm (db)
+			check orm_created: orm /= Void end
+			check database_set: orm.database = db end
+			db.close
+		end
+
+	test_new_orm_field
+			-- Test creating ORM field.
+		local
+			api: SERVICE_API
+			field: SIMPLE_ORM_FIELD
+		do
+			create api.make
+			field := api.new_orm_field ("email", 1)  -- type_string = 1
+			check field_created: field /= Void end
+			check name_set: field.name.same_string ("email") end
+			check type_string: field.field_type = 1 end
+		end
+
+	test_new_orm_primary_key_field
+			-- Test creating ORM primary key field.
+		local
+			api: SERVICE_API
+			field: SIMPLE_ORM_FIELD
+		do
+			create api.make
+			field := api.new_orm_primary_key_field ("id")
+			check field_created: field /= Void end
+			check is_pk: field.is_primary_key end
+			check is_auto: field.is_auto_increment end
+		end
+
 end

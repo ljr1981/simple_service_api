@@ -53,6 +53,10 @@
                     <p>SQLite with file or in-memory storage</p>
                 </div>
                 <div class="feature-card">
+                    <h4>ORM</h4>
+                    <p>Entity mapping, CRUD, repositories</p>
+                </div>
+                <div class="feature-card">
                     <h4>SMTP Email</h4>
                     <p>Send emails via SMTP with TLS</p>
                 </div>
@@ -127,6 +131,12 @@
     db := service.<span class="feature">new_memory_database</span>
     db.<span class="feature">execute</span> (<span class="string">"CREATE TABLE users (id INTEGER PRIMARY KEY)"</span>)
 
+    <span class="comment">-- ORM</span>
+    orm := service.<span class="feature">new_orm</span> (db)
+    orm.<span class="feature">create_table</span> (entity)
+    id := orm.<span class="feature">insert</span> (entity)
+    entity := orm.<span class="feature">find_by_id</span> (prototype, id)
+
     <span class="comment">-- Rate Limiting</span>
     limiter := service.<span class="feature">new_rate_limiter</span> (100, 60)
 
@@ -164,6 +174,13 @@
                 <h3>SQL Database</h3>
                 <div class="signature">new_database (path): SIMPLE_SQL</div>
                 <div class="signature">new_memory_database: SIMPLE_SQL</div>
+            </div>
+
+            <div class="api-section">
+                <h3>ORM (Object-Relational Mapping)</h3>
+                <div class="signature">new_orm (database): SIMPLE_ORM</div>
+                <div class="signature">new_orm_field (name, type): SIMPLE_ORM_FIELD</div>
+                <div class="signature">new_orm_primary_key_field (name): SIMPLE_ORM_FIELD</div>
             </div>
 
             <div class="api-section">
